@@ -17,7 +17,7 @@ export async function loadPetData(pet) {
     // 로딩 상태 표시
     showLoading();
     
-    const response = await fetch(`./data/${pet}.json`);
+    const response = await fetch(`./public/data/${pet}.json`);
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
