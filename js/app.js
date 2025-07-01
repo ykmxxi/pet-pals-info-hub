@@ -48,19 +48,26 @@ function bindEvents() {
   });
   
   // 동물병원 찾기 버튼 클릭 이벤트
-  elements.findHospitalBtn.addEventListener('click', handleFindHospital);
+  if (elements.findHospitalBtn) {
+    elements.findHospitalBtn.addEventListener('click', handleFindHospital);
+  }
   
   // 모달 닫기 이벤트
-  elements.modalClose.addEventListener('click', closeModal);
-  elements.hospitalModal.addEventListener('click', (e) => {
-    if (e.target === elements.hospitalModal) {
-      closeModal();
-    }
-  });
+  if (elements.modalClose) {
+    elements.modalClose.addEventListener('click', closeModal);
+  }
+  
+  if (elements.hospitalModal) {
+    elements.hospitalModal.addEventListener('click', (e) => {
+      if (e.target === elements.hospitalModal) {
+        closeModal();
+      }
+    });
+  }
   
   // ESC 키로 모달 닫기
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && elements.hospitalModal.classList.contains('modal--open')) {
+    if (e.key === 'Escape' && elements.hospitalModal && elements.hospitalModal.classList.contains('modal--open')) {
       closeModal();
     }
   });
@@ -130,15 +137,22 @@ function renderAllSections() {
   renderSupplements();
   
   // 페이드인 애니메이션 적용
-  document.querySelectorAll('.section').forEach(section => {
-    section.classList.add('fade-in');
-  });
+  setTimeout(() => {
+    document.querySelectorAll('.section').forEach(section => {
+      section.classList.add('fade-in');
+    });
+  }, 100);
 }
 
 /**
  * 금지 음식 카드 렌더링
  */
 function renderForbiddenFoods() {
+  if (!state.data || !state.data.forbiddenFoods) {
+    console.error('금지 음식 데이터가 없습니다');
+    return;
+  }
+  
   const foods = state.data.forbiddenFoods;
   
   const html = foods.map(food => `
@@ -158,6 +172,11 @@ function renderForbiddenFoods() {
  * 행동 해석 아코디언 렌더링
  */
 function renderBehaviors() {
+  if (!state.data || !state.data.behaviors) {
+    console.error('행동 해석 데이터가 없습니다');
+    return;
+  }
+  
   const behaviors = state.data.behaviors;
   
   const html = behaviors.map((behavior, index) => `
@@ -183,6 +202,11 @@ function renderBehaviors() {
  * 영양제 추천 카드 렌더링
  */
 function renderSupplements() {
+  if (!state.data || !state.data.supplements) {
+    console.error('영양제 데이터가 없습니다');
+    return;
+  }
+  
   const supplements = state.data.supplements;
   
   const html = supplements.map(supplement => `
@@ -192,7 +216,7 @@ function renderSupplements() {
         <p>${escapeHtml(supplement.benefit)}</p>
         ${supplement.link ? 
           `<a href="${escapeHtml(supplement.link)}" target="_blank" rel="noopener noreferrer" 
-             style="color: var(--color-accent); text-decoration: none; font-weight: 600;">
+             style="color: var(--color-accent); text-decoration: none; font-weight: 600; margin-top: 0.5rem; display: inline-block;">
             자세히 보기 →
           </a>` : ''}
       </div>
@@ -212,12 +236,20 @@ function toggleAccordion(index) {
   const content = document.getElementById(`accordion-${index}`);
   const icon = header.querySelector('.accordion__icon');
   
+  if (!header || !content || !icon) {
+    console.error('아코디언 요소를 찾을 수 없습니다:', index);
+    return;
+  }
+  
   const isOpen = header.getAttribute('aria-expanded') === 'true';
   
   // 모든 아코디언 닫기
   document.querySelectorAll('.accordion__header').forEach(h => {
     h.setAttribute('aria-expanded', 'false');
-    h.querySelector('.accordion__icon').classList.remove('accordion__icon--open');
+    const headerIcon = h.querySelector('.accordion__icon');
+    if (headerIcon) {
+      headerIcon.classList.remove('accordion__icon--open');
+    }
   });
   
   document.querySelectorAll('.accordion__content').forEach(c => {
@@ -301,18 +333,22 @@ function renderHospitalList() {
     </div>
   `).join('');
   
-  elements.hospitalList.innerHTML = html;
+  if (elements.hospitalList) {
+    elements.hospitalList.innerHTML = html;
+  }
   
   // 지도 영역 업데이트
   const mapElement = document.getElementById('map');
-  mapElement.innerHTML = `
-    <div style="text-align: center; color: var(--color-text-secondary);">
-      <p>🗺️ 카카오 지도 API 연동 예정</p>
-      <p style="font-size: 0.9rem; margin-top: 0.5rem;">
-        TODO: 카카오 개발자 센터에서 API 키 발급 후 연동
-      </p>
-    </div>
-  `;
+  if (mapElement) {
+    mapElement.innerHTML = `
+      <div style="text-align: center; color: var(--color-text-secondary);">
+        <p>🗺️ 카카오 지도 API 연동 예정</p>
+        <p style="font-size: 0.9rem; margin-top: 0.5rem;">
+          TODO: 카카오 개발자 센터에서 API 키 발급 후 연동
+        </p>
+      </div>
+    `;
+  }
   
   console.log(`동물병원 ${mockHospitals.length}개 렌더링 완료`);
 }
@@ -321,18 +357,22 @@ function renderHospitalList() {
  * 모달 열기
  */
 function openModal() {
-  elements.hospitalModal.classList.add('modal--open');
-  document.body.style.overflow = 'hidden';
-  console.log('동물병원 모달 열기');
+  if (elements.hospitalModal) {
+    elements.hospitalModal.classList.add('modal--open');
+    document.body.style.overflow = 'hidden';
+    console.log('동물병원 모달 열기');
+  }
 }
 
 /**
  * 모달 닫기
  */
 function closeModal() {
-  elements.hospitalModal.classList.remove('modal--open');
-  document.body.style.overflow = '';
-  console.log('동물병원 모달 닫기');
+  if (elements.hospitalModal) {
+    elements.hospitalModal.classList.remove('modal--open');
+    document.body.style.overflow = '';
+    console.log('동물병원 모달 닫기');
+  }
 }
 
 /**
@@ -342,7 +382,9 @@ function showLoading() {
   const sections = ['forbidden-foods', 'behaviors', 'supplements'];
   sections.forEach(id => {
     const element = document.getElementById(id);
-    element.innerHTML = '<div class="loading"></div>';
+    if (element) {
+      element.innerHTML = '<div class="loading"></div>';
+    }
   });
 }
 
@@ -358,9 +400,15 @@ function showError(message) {
     </div>
   `;
   
-  elements.forbiddenFoodsContainer.innerHTML = errorHtml;
-  elements.behaviorsContainer.innerHTML = '';
-  elements.supplementsContainer.innerHTML = '';
+  if (elements.forbiddenFoodsContainer) {
+    elements.forbiddenFoodsContainer.innerHTML = errorHtml;
+  }
+  if (elements.behaviorsContainer) {
+    elements.behaviorsContainer.innerHTML = '';
+  }
+  if (elements.supplementsContainer) {
+    elements.supplementsContainer.innerHTML = '';
+  }
 }
 
 /**
@@ -369,6 +417,7 @@ function showError(message) {
  * @returns {string} 이스케이프된 텍스트
  */
 function escapeHtml(text) {
+  if (!text) return '';
   const div = document.createElement('div');
   div.textContent = text;
   return div.innerHTML;
