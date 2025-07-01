@@ -1,3 +1,4 @@
+
 /**
  * UI 렌더링 모듈
  */
@@ -91,7 +92,7 @@ export function renderSupplements() {
       <h3 class="card__title">${escapeHtml(supplement.name)}</h3>
       <div class="card__content">
         <p>${escapeHtml(supplement.benefit)}</p>
-        <button class="supplement-detail-btn" onclick="window.showSupplementDetail(${index})" 
+        <button class="supplement-detail-btn" onclick="showSupplementDetail(${index})" 
                 style="color: var(--color-accent); background: none; border: none; text-decoration: none; font-weight: 600; margin-top: 0.5rem; display: inline-block; cursor: pointer;">
           자세히 보기 →
         </button>
@@ -166,7 +167,7 @@ export function showSupplementDetail(index) {
       <div class="modal__content">
         <div class="modal__header">
           <h3>${escapeHtml(supplement.name)} 상세 정보</h3>
-          <button class="modal__close" onclick="window.closeSupplementModal()" aria-label="모달 닫기">&times;</button>
+          <button class="modal__close" onclick="closeSupplementModal()" aria-label="모달 닫기">&times;</button>
         </div>
         <div class="modal__body">
           <div class="supplement-detail">

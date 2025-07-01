@@ -1,4 +1,3 @@
-
 /**
  * PetCare 웹앱 메인 JavaScript 파일
  * 앱 초기화 및 이벤트 관리
@@ -6,7 +5,7 @@
 import { state, updateCurrentPet } from './state.js';
 import { elements } from './dom-elements.js';
 import { loadPetData } from './data-loader.js';
-import { toggleAccordion } from './renderers.js';
+import { toggleAccordion, showSupplementDetail, closeSupplementModal } from './renderers.js';
 import { handleFindHospital } from './hospital-finder.js';
 import { closeModal } from './modal.js';
 
