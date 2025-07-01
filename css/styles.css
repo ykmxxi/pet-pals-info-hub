@@ -1,0 +1,433 @@
+
+/* CSS 변수 정의 */
+:root {
+  --color-primary: #ff6b35;
+  --color-secondary: #4ecdc4;
+  --color-accent: #45b7d1;
+  --color-warning: #ffa726;
+  --color-danger: #ef5350;
+  --color-success: #66bb6a;
+  
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: #f8f9fa;
+  --color-bg-card: #ffffff;
+  --color-text-primary: #2c3e50;
+  --color-text-secondary: #7f8c8d;
+  --color-border: #e9ecef;
+  
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
+  
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+}
+
+/* 다크모드 지원 */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg-primary: #1a1a1a;
+    --color-bg-secondary: #2d2d2d;
+    --color-bg-card: #333333;
+    --color-text-primary: #ffffff;
+    --color-text-secondary: #b0b0b0;
+    --color-border: #404040;
+  }
+}
+
+/* 기본 스타일 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-sm);
+}
+
+/* 헤더 */
+.header {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  padding: var(--spacing-md) 0;
+  box-shadow: var(--shadow-md);
+}
+
+.header__container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-sm);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__logo h1 {
+  color: white;
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.header__nav {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+.tab-button {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  padding: var(--spacing-xs) var(--spacing-md);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.tab-button:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.tab-button--active {
+  background: white;
+  color: var(--color-primary);
+  border-color: white;
+}
+
+/* 메인 콘텐츠 */
+.main {
+  padding: var(--spacing-xl) 0;
+  min-height: 70vh;
+}
+
+.section {
+  margin-bottom: var(--spacing-xl);
+}
+
+.section__title {
+  font-size: 1.8rem;
+  margin-bottom: var(--spacing-lg);
+  color: var(--color-text-primary);
+  text-align: center;
+}
+
+/* 카드 그리드 */
+.card-grid {
+  display: grid;
+  gap: var(--spacing-md);
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.card {
+  background: var(--color-bg-card);
+  padding: var(--spacing-md);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--color-border);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.card__title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: var(--spacing-xs);
+  color: var(--color-primary);
+}
+
+.card__content {
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+.card--danger .card__title {
+  color: var(--color-danger);
+}
+
+.card--success .card__title {
+  color: var(--color-success);
+}
+
+/* 아코디언 */
+.accordion {
+  background: var(--color-bg-card);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--color-border);
+}
+
+.accordion__item {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.accordion__item:last-child {
+  border-bottom: none;
+}
+
+.accordion__header {
+  background: none;
+  border: none;
+  width: 100%;
+  padding: var(--spacing-md);
+  text-align: left;
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.3s ease;
+}
+
+.accordion__header:hover {
+  background: var(--color-bg-secondary);
+}
+
+.accordion__icon {
+  transition: transform 0.3s ease;
+}
+
+.accordion__icon--open {
+  transform: rotate(180deg);
+}
+
+.accordion__content {
+  padding: 0 var(--spacing-md) var(--spacing-md);
+  color: var(--color-text-secondary);
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.accordion__content--open {
+  max-height: 200px;
+}
+
+/* 동물병원 찾기 버튼 */
+.find-hospital-btn {
+  display: block;
+  margin: 0 auto;
+  background: linear-gradient(135deg, var(--color-accent), var(--color-secondary));
+  color: white;
+  border: none;
+  padding: var(--spacing-md) var(--spacing-xl);
+  border-radius: var(--radius-lg);
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-md);
+}
+
+.find-hospital-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* 모달 */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+}
+
+.modal--open {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal__content {
+  background: var(--color-bg-card);
+  border-radius: var(--radius-lg);
+  max-width: 90vw;
+  max-height: 90vh;
+  width: 800px;
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+
+.modal__header {
+  padding: var(--spacing-md);
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--color-bg-secondary);
+}
+
+.modal__header h3 {
+  margin: 0;
+  color: var(--color-text-primary);
+}
+
+.modal__close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--color-text-secondary);
+  padding: var(--spacing-xs);
+  border-radius: var(--radius-sm);
+  transition: all 0.3s ease;
+}
+
+.modal__close:hover {
+  background: var(--color-danger);
+  color: white;
+}
+
+.modal__body {
+  padding: var(--spacing-md);
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+.map {
+  height: 300px;
+  background: var(--color-bg-secondary);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--spacing-md);
+  border: 1px solid var(--color-border);
+}
+
+.hospital-list {
+  display: grid;
+  gap: var(--spacing-sm);
+}
+
+.hospital-item {
+  padding: var(--spacing-sm);
+  background: var(--color-bg-secondary);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+}
+
+.hospital-item__name {
+  font-weight: 600;
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-xs);
+}
+
+.hospital-item__address {
+  color: var(--color-text-secondary);
+  font-size: 0.9rem;
+}
+
+/* 푸터 */
+.footer {
+  background: var(--color-bg-secondary);
+  padding: var(--spacing-lg) 0;
+  text-align: center;
+  color: var(--color-text-secondary);
+  border-top: 1px solid var(--color-border);
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .header__container {
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+  
+  .header__nav {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .tab-button {
+    flex: 1;
+    text-align: center;
+  }
+  
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .section__title {
+    font-size: 1.5rem;
+  }
+  
+  .modal__content {
+    margin: var(--spacing-sm);
+    width: calc(100% - 2rem);
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1025px) {
+  .card-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* 애니메이션 */
+.fade-in {
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 로딩 스피너 */
+.loading {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid var(--color-border);
+  border-radius: 50%;
+  border-top: 3px solid var(--color-primary);
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
