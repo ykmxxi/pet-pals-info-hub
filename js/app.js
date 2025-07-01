@@ -88,5 +88,7 @@ async function handleTabClick(event) {
 // 앱 초기화
 document.addEventListener('DOMContentLoaded', initApp);
 
-// 전역 함수로 toggleAccordion 노출 (onclick에서 사용)
+// 전역 함수로 노출 (onclick에서 사용)
 window.toggleAccordion = toggleAccordion;
+window.showSupplementDetail = showSupplementDetail;
+window.closeSupplementModal = closeSupplementModal;

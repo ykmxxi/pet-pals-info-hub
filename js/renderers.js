@@ -1,4 +1,3 @@
-
 /**
  * UI 렌더링 모듈
  */
@@ -87,16 +86,15 @@ export function renderSupplements() {
   
   const supplements = state.data.supplements;
   
-  const html = supplements.map(supplement => `
+  const html = supplements.map((supplement, index) => `
     <article class="card card--success">
       <h3 class="card__title">${escapeHtml(supplement.name)}</h3>
       <div class="card__content">
         <p>${escapeHtml(supplement.benefit)}</p>
-        ${supplement.link ? 
-          `<a href="${escapeHtml(supplement.link)}" target="_blank" rel="noopener noreferrer" 
-             style="color: var(--color-accent); text-decoration: none; font-weight: 600; margin-top: 0.5rem; display: inline-block;">
-            자세히 보기 →
-          </a>` : ''}
+        <button class="supplement-detail-btn" onclick="window.showSupplementDetail(${index})" 
+                style="color: var(--color-accent); background: none; border: none; text-decoration: none; font-weight: 600; margin-top: 0.5rem; display: inline-block; cursor: pointer;">
+          자세히 보기 →
+        </button>
       </div>
     </article>
   `).join('');
@@ -142,4 +140,103 @@ export function toggleAccordion(index) {
   }
   
   console.log(`아코디언 ${index} ${!isOpen ? '열기' : '닫기'}`);
+}
+
+/**
+ * 영양제 상세 정보 모달 표시
+ * @param {number} index - 영양제 인덱스
+ */
+export function showSupplementDetail(index) {
+  if (!state.data || !state.data.supplements || !state.data.supplements[index]) {
+    console.error('영양제 데이터를 찾을 수 없습니다:', index);
+    return;
+  }
+  
+  const supplement = state.data.supplements[index];
+  
+  // 기존 모달이 있다면 제거
+  const existingModal = document.getElementById('supplement-modal');
+  if (existingModal) {
+    existingModal.remove();
+  }
+  
+  // 모달 HTML 생성
+  const modalHtml = `
+    <div class="modal" id="supplement-modal">
+      <div class="modal__content">
+        <div class="modal__header">
+          <h3>${escapeHtml(supplement.name)} 상세 정보</h3>
+          <button class="modal__close" onclick="window.closeSupplementModal()" aria-label="모달 닫기">&times;</button>
+        </div>
+        <div class="modal__body">
+          <div class="supplement-detail">
+            <div class="supplement-section">
+              <h4>📋 주요 효과</h4>
+              <ul>
+                ${supplement.effects.map(effect => `<li>${escapeHtml(effect)}</li>`).join('')}
+              </ul>
+            </div>
+            
+            <div class="supplement-section">
+              <h4>⚠️ 주의사항</h4>
+              <ul>
+                ${supplement.precautions.map(precaution => `<li>${escapeHtml(precaution)}</li>`).join('')}
+              </ul>
+            </div>
+            
+            <div class="supplement-section">
+              <h4>💊 복용 방법</h4>
+              <p>${escapeHtml(supplement.dosage)}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+  
+  // 모달을 body에 추가
+  document.body.insertAdjacentHTML('beforeend', modalHtml);
+  
+  // 모달 표시
+  const modal = document.getElementById('supplement-modal');
+  if (modal) {
+    modal.classList.add('modal--open');
+    document.body.style.overflow = 'hidden';
+    
+    // 모달 외부 클릭 시 닫기
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        closeSupplementModal();
+      }
+    });
+    
+    // ESC 키로 모달 닫기
+    const escapeHandler = (e) => {
+      if (e.key === 'Escape') {
+        closeSupplementModal();
+        document.removeEventListener('keydown', escapeHandler);
+      }
+    };
+    document.addEventListener('keydown', escapeHandler);
+  }
+  
+  console.log(`영양제 상세 정보 모달 열기: ${supplement.name}`);
+}
+
+/**
+ * 영양제 상세 정보 모달 닫기
+ */
+export function closeSupplementModal() {
+  const modal = document.getElementById('supplement-modal');
+  if (modal) {
+    modal.classList.remove('modal--open');
+    document.body.style.overflow = '';
+    
+    // 애니메이션 후 모달 제거
+    setTimeout(() => {
+      modal.remove();
+    }, 300);
+  }
+  
+  console.log('영양제 상세 정보 모달 닫기');
 }

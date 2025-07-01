@@ -1,163 +1,108 @@
-
-/* CSS 변수 정의 */
+/* General Styles */
 :root {
-  --color-primary: #2563eb;
-  --color-primary-dark: #1d4ed8;
-  --color-secondary: #f1f5f9;
-  --color-accent: #10b981;
-  --color-danger: #ef4444;
-  --color-warning: #f59e0b;
-  --color-success: #10b981;
-  --color-text: #1f2937;
-  --color-text-secondary: #6b7280;
-  --color-bg: #ffffff;
-  --color-bg-secondary: #f8fafc;
-  --border-radius: 0.75rem;
-  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-  --transition: all 0.3s ease;
-}
-
-/* 다크모드 대응 */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-bg: #0f172a;
-    --color-bg-secondary: #1e293b;
-    --color-text: #f1f5f9;
-    --color-text-secondary: #94a3b8;
-    --color-secondary: #334155;
-  }
-}
-
-/* 기본 스타일 */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  --color-primary: #4CAF50; /* Green */
+  --color-secondary: #FFC107; /* Amber */
+  --color-accent: #2196F3; /* Blue */
+  --color-danger: #F44336; /* Red */
+  --color-success: #8BC34A; /* Light Green */
+  --color-text-primary: #212121; /* Dark Grey */
+  --color-text-secondary: #757575; /* Medium Grey */
+  --color-bg: #FAFAFA; /* Light Grey */
+  --color-bg-secondary: #E0E0E0; /* Lighter Grey */
+  --color-border: #BDBDBD; /* Grey */
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: 'Arial', sans-serif;
   line-height: 1.6;
-  color: var(--color-text);
+  color: var(--color-text-primary);
   background-color: var(--color-bg);
+  margin: 0;
+  padding: 0;
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 960px;
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 1rem;
 }
 
-/* 헤더 스타일 */
+/* Header Styles */
 .header {
-  background-color: var(--color-primary);
-  color: white;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 1rem 0;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  box-shadow: var(--shadow);
 }
 
 .header__container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1rem;
 }
 
 .header__logo h1 {
+  color: var(--color-primary);
+  margin: 0;
   font-size: 1.5rem;
-  font-weight: 700;
 }
 
 .header__nav {
   display: flex;
-  gap: 0.5rem;
 }
 
 .tab-button {
-  background: rgba(255, 255, 255, 0.1);
+  background: none;
   border: none;
-  color: white;
-  padding: 0.75rem 1.5rem;
-  border-radius: var(--border-radius);
-  cursor: pointer;
-  transition: var(--transition);
+  padding: 0.5rem 1rem;
+  margin: 0 0.5rem;
   font-size: 1rem;
-  font-weight: 500;
+  cursor: pointer;
+  color: var(--color-text-secondary);
+  transition: color 0.3s ease;
 }
 
-.tab-button:hover {
-  background: rgba(255, 255, 255, 0.2);
+.tab-button:hover,
+.tab-button--active {
+  color: var(--color-accent);
+  font-weight: 600;
 }
 
 .tab-button--active {
-  background: white;
-  color: var(--color-primary);
+  border-bottom: 2px solid var(--color-accent);
 }
 
-/* 메인 컨텐츠 */
+/* Main Styles */
 .main {
   padding: 2rem 0;
-  min-height: calc(100vh - 200px);
 }
 
 .section {
-  margin-bottom: 3rem;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: var(--transition);
-}
-
-.section.fade-in {
-  opacity: 1;
-  transform: translateY(0);
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .section__title {
-  font-size: 2rem;
-  font-weight: 700;
+  color: var(--color-primary);
   margin-bottom: 1.5rem;
-  text-align: center;
-  color: var(--color-text);
+  border-bottom: 2px solid var(--color-border);
+  padding-bottom: 0.5rem;
 }
 
-/* 카드 그리드 */
+/* Card Styles */
 .card-grid {
   display: grid;
-  gap: 1.5rem;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
 }
 
-@media (min-width: 768px) {
-  .card-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (min-width: 1024px) {
-  .card-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-/* 카드 스타일 */
 .card {
-  background: var(--color-bg);
-  border-radius: var(--border-radius);
-  padding: 1.5rem;
-  box-shadow: var(--shadow);
-  transition: var(--transition);
-  border: 1px solid var(--color-secondary);
-}
-
-.card:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-lg);
+  background-color: var(--color-bg-secondary);
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .card--danger {
@@ -169,232 +114,294 @@ body {
 }
 
 .card__title {
-  font-size: 1.25rem;
-  font-weight: 600;
+  color: var(--color-danger);
   margin-bottom: 0.75rem;
-  color: var(--color-text);
 }
 
 .card__content {
-  color: var(--color-text-secondary);
-  line-height: 1.5;
+  font-size: 0.9rem;
 }
 
-/* 아코디언 스타일 */
-.accordion {
-  background: var(--color-bg);
-  border-radius: var(--border-radius);
-  box-shadow: var(--shadow);
+/* Accordion Styles */
+.accordion__item {
+  margin-bottom: 0.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
   overflow: hidden;
 }
 
-.accordion__item {
-  border-bottom: 1px solid var(--color-secondary);
-}
-
-.accordion__item:last-child {
-  border-bottom: none;
-}
-
 .accordion__header {
-  width: 100%;
-  background: none;
-  border: none;
-  padding: 1.5rem;
-  text-align: left;
+  background-color: var(--color-bg-secondary);
+  color: var(--color-text-primary);
+  padding: 0.75rem 1rem;
   cursor: pointer;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: var(--color-text);
-  transition: var(--transition);
+  border: none;
+  width: 100%;
+  text-align: left;
+  transition: background-color 0.3s ease;
 }
 
 .accordion__header:hover {
-  background: var(--color-bg-secondary);
+  background-color: #ddd;
+}
+
+.accordion__content {
+  padding: 1rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  display: none;
+}
+
+.accordion__content--open {
+  display: block;
 }
 
 .accordion__icon {
   transition: transform 0.3s ease;
-  color: var(--color-text-secondary);
 }
 
 .accordion__icon--open {
   transform: rotate(180deg);
 }
 
-.accordion__content {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease;
-  background: var(--color-bg-secondary);
-}
-
-.accordion__content--open {
-  max-height: 200px;
-  padding: 1.5rem;
-}
-
-/* 버튼 스타일 */
+/* Find Hospital Button Styles */
 .find-hospital-btn {
-  display: block;
-  width: 100%;
-  max-width: 300px;
-  margin: 0 auto;
-  background: var(--color-accent);
+  background-color: var(--color-accent);
   color: white;
   border: none;
-  padding: 1rem 2rem;
-  border-radius: var(--border-radius);
-  font-size: 1.1rem;
-  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
   cursor: pointer;
-  transition: var(--transition);
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
 }
 
 .find-hospital-btn:hover {
-  background: #059669;
-  transform: translateY(-2px);
+  background-color: #1976D2;
 }
 
-/* 모달 스타일 */
+/* Footer Styles */
+.footer {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 1rem 0;
+  font-size: 0.8rem;
+}
+
+/* Modal Styles */
 .modal {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
   align-items: center;
+  justify-content: center;
   z-index: 1000;
-  opacity: 0;
-  visibility: hidden;
-  transition: var(--transition);
 }
 
 .modal--open {
-  opacity: 1;
-  visibility: visible;
+  display: flex;
 }
 
 .modal__content {
-  background: var(--color-bg);
-  border-radius: var(--border-radius);
-  width: 90%;
-  max-width: 800px;
-  max-height: 80vh;
-  overflow: hidden;
-  box-shadow: var(--shadow-lg);
+  background-color: #fff;
+  border-radius: 8px;
+  width: 80%;
+  max-width: 600px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 0.3s ease-in-out;
 }
 
 .modal__header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.5rem;
-  border-bottom: 1px solid var(--color-secondary);
+  padding: 1rem;
+  border-bottom: 1px solid var(--color-border);
 }
 
 .modal__header h3 {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: var(--color-text);
+  margin: 0;
+  color: var(--color-text-primary);
+}
+
+.modal__body {
+  padding: 1rem;
 }
 
 .modal__close {
   background: none;
   border: none;
-  font-size: 2rem;
+  font-size: 1.5rem;
   cursor: pointer;
   color: var(--color-text-secondary);
-  transition: var(--transition);
+  transition: color 0.3s ease;
 }
 
 .modal__close:hover {
   color: var(--color-danger);
 }
 
-.modal__body {
-  padding: 1.5rem;
+/* Map Styles */
+.map {
+  height: 300px;
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-secondary);
+}
+
+/* Hospital List Styles */
+.hospital-list {
+  padding: 0;
+  list-style: none;
+}
+
+.hospital-list li {
+  padding: 0.75rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.hospital-list li:last-child {
+  border-bottom: none;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    padding: 0.5rem;
+  }
+
+  .header__container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .header__logo {
+    margin-bottom: 0.5rem;
+  }
+
+  .tab-button {
+    margin: 0.25rem;
+    padding: 0.4rem 0.8rem;
+  }
+
+  .section {
+    padding: 0.75rem;
+  }
+
+  .section__title {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+
+  .card-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+
+  .card {
+    padding: 0.75rem;
+  }
+
+  .card__title {
+    font-size: 1rem;
+  }
+
+  .find-hospital-btn {
+    font-size: 0.9rem;
+  }
+
+  .modal__content {
+    width: 95%;
+  }
+}
+
+/* 영양제 상세 정보 모달 스타일 */
+.supplement-detail {
   max-height: 60vh;
   overflow-y: auto;
 }
 
-.map {
-  height: 300px;
-  background: var(--color-bg-secondary);
-  border-radius: var(--border-radius);
+.supplement-section {
   margin-bottom: 1.5rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid var(--color-secondary);
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--color-border);
 }
 
-.hospital-list {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+.supplement-section:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
 }
 
-.hospital-item {
-  padding: 1rem;
-  background: var(--color-bg-secondary);
-  border-radius: var(--border-radius);
-  border: 1px solid var(--color-secondary);
-}
-
-.hospital-item__name {
+.supplement-section h4 {
+  color: var(--color-accent);
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
   font-weight: 600;
-  color: var(--color-text);
+}
+
+.supplement-section ul {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.supplement-section li {
   margin-bottom: 0.5rem;
+  line-height: 1.5;
 }
 
-.hospital-item__address {
-  color: var(--color-text-secondary);
-  font-size: 0.9rem;
+.supplement-section p {
+  line-height: 1.6;
+  margin: 0;
+  padding: 0.75rem;
+  background-color: var(--color-bg-secondary);
+  border-radius: 8px;
+  border-left: 3px solid var(--color-accent);
 }
 
-/* 푸터 */
-.footer {
-  background: var(--color-bg-secondary);
-  padding: 2rem 0;
-  border-top: 1px solid var(--color-secondary);
-  text-align: center;
-  color: var(--color-text-secondary);
+.supplement-detail-btn:hover {
+  text-decoration: underline !important;
 }
 
-/* 로딩 스타일 */
-.loading {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100px;
-  font-size: 1.1rem;
-  color: var(--color-text-secondary);
-}
-
-.loading::after {
-  content: "로딩 중...";
-}
-
-/* 반응형 디자인 */
+/* 반응형 모달 조정 */
 @media (max-width: 768px) {
-  .header__container {
-    flex-direction: column;
-    gap: 1rem;
+  .supplement-detail {
+    max-height: 50vh;
   }
   
-  .section__title {
-    font-size: 1.5rem;
+  .supplement-section h4 {
+    font-size: 0.95rem;
   }
   
-  .modal__content {
-    width: 95%;
-    margin: 1rem;
+  .supplement-section li,
+  .supplement-section p {
+    font-size: 0.9rem;
   }
 }
