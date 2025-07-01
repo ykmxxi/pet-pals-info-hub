@@ -1,73 +1,59 @@
-# Welcome to your Lovable project
+# 🐾 Pet Pals Info Hub
 
-## Project info
+> 반려견·반려묘 보호자를 위한 **올-인-원 정보 웹앱**  
+> HTML + CSS + JavaScript 순수 스택으로 구현되었습니다.
 
-**URL**: https://lovable.dev/projects/0a4e4fcb-3ad6-45f5-a640-a396444c6ace
+| 배포 URL | 🚀 **https://pet-pals-info-hub.lovable.app/** |
+|---------|----------------------------------------------|
 
-## How can I edit this code?
+## 📌 프로젝트 개요
+- **금지 음식 안내**, **행동 의미 해석**, **영양제 추천**, **위치 기반 동물병원 검색**을 한곳에서 제공합니다.  
+- 프레임워크 없이 바닐라 JS로 작성해 가벼운 로딩과 학습용 이해도를 모두 확보했습니다.
 
-There are several ways of editing your application.
+### 🔑 주요 기능
+| 기능 | 강아지 🐶 | 고양이 🐱 |
+|------|-----------|-----------|
+| 먹으면 안 되는 음식 안내 | ✅ | ✅ |
+| 행동 의미 해석 | ✅ | ✅ |
+| 맞춤 영양제 추천 | ✅ | ✅ |
+| 주변 동물병원 찾기 (GPS) | ✅ | ✅ |
 
-**Use Lovable**
+---
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/0a4e4fcb-3ad6-45f5-a640-a396444c6ace) and start prompting.
+## 🎯 페르소나
 
-Changes made via Lovable will be committed automatically to this repo.
+| 구분 | 이름 | 나이 | 배경 | 목표 |
+|------|------|------|------|------|
+| **강아지 보호자** | 포스티 | 25세 | 1인 가구 직장인, 반려견 단독 양육 | 정확한 정보를 통해 강아지 삶의 질 향상 |
+| **고양이 보호자** | 히포 | 26세 | 직장인 커플, 반려묘 공동 양육 | 믿을 수 있는 정보로 고양이 건강·행복 증대 |
 
-**Use your preferred IDE**
+---
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## 🛣️ 사용자 시나리오
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### 1. 포스티 — 강아지 행동 해석 & 병원 찾기
+> **목표:** 힘이 없어 보이는 강아지 상태 파악  
+> **흐름:**  
+> 1. 직장에서 귀가 후 강아지가 **일어나지 않고 꼬리가 축 쳐져 있는 것** 발견.  
+> 2. 앱에서 **‘강아지 행동 모음집’** 기능으로 의미 확인 → ‘불안 또는 통증 가능’.  
+> 3. 즉시 **‘주변 동물병원 찾기’** 기능 실행 → 가장 가까운 병원 위치·연락처 확인 후 방문 결정.
 
-Follow these steps:
+### 2. 히포 — 금지 음식 확인 & 행동·영양제 탐색
+> **목표:** 고양이에게 안전한 식단 유지  
+> **흐름:**  
+> 1. 배달음식 섭취 중 고양이가 관심을 보여 **‘금지 음식 안내’** 검색 → 해당 음식은 위험 판정.  
+> 2. 음식을 주지 않자 고양이가 낯선 행동. **‘행동 의미 해석’**으로 ‘불만 표시’ 파악.  
+> 3. 기분 전환용 간식 구매 후 **‘영양제 추천’** 기능으로 건강 보조제 정보 확인·구매.
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+---
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+## 🛠️ 기술 스택
+- **Front-End:** Vanilla JS, HTML5, CSS3  
+- **지도 API:** Kakao Map JavaScript SDK (Browser Key 필요)
 
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/0a4e4fcb-3ad6-45f5-a640-a396444c6ace) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+## 🚀 로컬 실행
+```bash
+git clone https://github.com/your-repo/pet-pals-info-hub.git
+cd pet-pals-info-hub
+# 정적 서버 예시
+npx serve .
