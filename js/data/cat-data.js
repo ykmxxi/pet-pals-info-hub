@@ -1,4 +1,3 @@
-
 export const catData = {
   forbiddenFoods: [
     {
@@ -92,48 +91,100 @@ export const catData = {
       lastUpdated: "2024-12-15"
     }
   ],
+  
   behaviors: [
     {
       keyword: "그르렁거리기",
-      meaning: "만족감, 편안함의 표현이지만 때로는 스트레스 신호이기도 합니다.",
-      examples: "쓰다듬을 때나 무릎 위에서 쉴 때",
-      action: "컨텍스트를 파악하여 스트레스성인지 확인하세요.",
+      meaning: "만족감, 편안함의 표현이지만 때로는 스트레스나 통증 신호이기도 합니다.",
+      examples: "쓰다듬을 때나 무릎 위에서 쉴 때, 또는 아플 때",
+      action: "컨텍스트를 파악하여 스트레스성이나 통증성인지 확인하세요.",
+      image: "assets/behaviors/cat-purring.jpg",
       source: "고양이행동학회",
-      lastUpdated: "2024-12-12"
+      lastUpdated: "2024-12-15"
     },
     {
       keyword: "꼬리 팽창",
       meaning: "공포, 위협감, 또는 극도의 흥분 상태를 나타냅니다.",
-      examples: "다른 고양이나 강아지를 만났을 때",
+      examples: "다른 고양이나 강아지를 만났을 때, 큰 소리에 놀랐을 때",
       action: "자극 요인을 제거하고 안전한 공간으로 이동시키세요.",
+      image: "assets/behaviors/cat-tail-puffed.jpg",
       source: "동물행동치료센터",
       lastUpdated: "2024-12-14"
     },
     {
       keyword: "비비기",
-      meaning: "애정 표현과 영역 표시의 의미입니다.",
-      examples: "주인의 다리나 얼굴에 비빌 때",
+      meaning: "애정 표현과 영역 표시의 의미입니다. 페로몬을 분비하여 냄새를 남깁니다.",
+      examples: "주인의 다리나 얼굴에 비빌 때, 가구에 비빌 때",
       action: "긍정적인 신호이므로 부드럽게 반응해주세요.",
+      image: "assets/behaviors/cat-rubbing.jpg",
       source: "고양이심리연구소",
-      lastUpdated: "2024-12-10"
+      lastUpdated: "2024-12-13"
     },
     {
       keyword: "할퀴기",
-      meaning: "영역 표시, 스트레스 해소, 또는 관심끌기입니다.",
-      examples: "소파나 가구를 할퀼 때",
+      meaning: "영역 표시, 스트레스 해소, 또는 관심끌기입니다. 발톱 관리의 의미도 있습니다.",
+      examples: "소파나 가구를 할퀼 때, 스크래처를 사용할 때",
       action: "스크래처를 제공하고 긍정적 강화 훈련을 하세요.",
+      image: "assets/behaviors/cat-scratching.jpg",
       source: "고양이훈련전문가협회",
-      lastUpdated: "2024-12-13"
+      lastUpdated: "2024-12-12"
     },
     {
       keyword: "숨기",
       meaning: "스트레스, 질병, 또는 안전한 공간에 대한 욕구입니다.",
-      examples: "침대 아래나 좁은 공간에 숨을 때",
+      examples: "침대 아래나 좁은 공간에 숨을 때, 새로운 환경에서",
       action: "강제로 꺼내지 말고 스트레스 요인을 파악하세요.",
+      image: "assets/behaviors/cat-hiding.jpg",
       source: "고양이스트레스연구소",
       lastUpdated: "2024-12-11"
+    },
+    {
+      keyword: "꾹꾹이",
+      meaning: "어미를 그리워하는 행동이자 만족감과 애정을 표현하는 신호입니다.",
+      examples: "무릎 위에서, 부드러운 담요나 쿠션을 밟을 때",
+      action: "긍정적인 행동이므로 편안하게 두거나 부드럽게 쓰다듬어주세요.",
+      image: "assets/behaviors/cat-kneading.jpg",
+      source: "고양이애착행동연구소",
+      lastUpdated: "2024-12-10"
+    },
+    {
+      keyword: "야옹거리기",
+      meaning: "의사소통의 수단으로, 요구사항이나 감정을 표현합니다.",
+      examples: "식사 시간, 관심을 받고 싶을 때, 문 앞에서",
+      action: "상황에 맞는 적절한 반응을 보여주되, 과도한 요구는 무시하세요.",
+      image: "assets/behaviors/cat-meowing.jpg",
+      source: "고양이음성학연구센터",
+      lastUpdated: "2024-12-09"
+    },
+    {
+      keyword: "털 핥기",
+      meaning: "그루밍 본능이지만 과도하면 스트레스나 피부 질환의 신호일 수 있습니다.",
+      examples: "식사 후 그루밍, 스트레스 상황에서 과도한 핥기",
+      action: "적정 수준은 정상이지만, 과도하면 원인을 파악하고 수의사 상담을 받으세요.",
+      image: "assets/behaviors/cat-grooming.jpg",
+      source: "고양이그루밍연구소",
+      lastUpdated: "2024-12-08"
+    },
+    {
+      keyword: "등 굽히기",
+      meaning: "경계, 위협, 또는 놀이 모드를 나타내는 신호입니다.",
+      examples: "다른 고양이와 마주쳤을 때, 놀이를 시작할 때",
+      action: "상황을 파악하여 놀이인지 위협 상황인지 구분하고 적절히 대응하세요.",
+      image: "assets/behaviors/cat-arching.jpg",
+      source: "고양이위협행동연구소",
+      lastUpdated: "2024-12-07"
+    },
+    {
+      keyword: "눈 천천히 깜빡이기",
+      meaning: "신뢰와 애정을 표현하는 '고양이 키스'입니다.",
+      examples: "주인을 바라보며 천천히 눈을 깜빡일 때",
+      action: "같은 방식으로 천천히 눈을 깜빡여 애정을 표현해주세요.",
+      image: "assets/behaviors/cat-slow-blink.jpg",
+      source: "고양이애정표현연구센터",
+      lastUpdated: "2024-12-06"
     }
   ],
+  
   supplements: [
     {
       name: "타우린",

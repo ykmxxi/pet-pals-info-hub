@@ -170,7 +170,7 @@ export function renderBehaviors() {
   
   const behaviors = state.data.behaviors;
   
-  // 다중 선택 가능한 아코디언으로 변경
+  // 다중 선택 가능한 아코디언으로 변경, 카드 레이아웃 적용
   const html = behaviors.map((behavior, index) => `
     <div class="accordion__item">
       <button class="accordion__header" 
@@ -178,17 +178,29 @@ export function renderBehaviors() {
               data-multi="true"
               aria-expanded="false"
               onclick="window.toggleAccordion(${index})">
-        <span>${escapeHtml(behavior.keyword)}</span>
+        <span class="behavior-keyword">${escapeHtml(behavior.keyword)}</span>
         <span class="accordion__icon">▼</span>
       </button>
       <div class="accordion__content" id="accordion-${index}">
         <div class="behavior-card">
-          <p>${escapeHtml(behavior.meaning)}</p>
-          <div class="behavior-examples">
-            <strong>예시:</strong> ${escapeHtml(behavior.examples)}
-          </div>
-          <div class="behavior-action">
-            <strong>대응 방법:</strong> ${escapeHtml(behavior.action)}
+          <div class="behavior-content">
+            <div class="behavior-image-section">
+              <img src="${behavior.image}" alt="${escapeHtml(behavior.keyword)} 행동" class="behavior-image" loading="lazy" onerror="this.style.display='none'">
+            </div>
+            <div class="behavior-info-section">
+              <div class="behavior-meaning">
+                <h4>🔍 행동 의미</h4>
+                <p>${escapeHtml(behavior.meaning)}</p>
+              </div>
+              <div class="behavior-examples">
+                <h4>📝 예시 상황</h4>
+                <p>${escapeHtml(behavior.examples)}</p>
+              </div>
+              <div class="behavior-action">
+                <h4>💡 대응 방법</h4>
+                <p>${escapeHtml(behavior.action)}</p>
+              </div>
+            </div>
           </div>
           <div class="meta">
             <span class="meta__source">출처: ${escapeHtml(behavior.source)}</span>
