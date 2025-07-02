@@ -405,3 +405,177 @@ body {
     font-size: 0.9rem;
   }
 }
+
+/* 위험도별 배지 스타일 */
+.risk-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.risk-low {
+  background-color: #e3f2fd;
+  color: #1976d2;
+  border: 1px solid #bbdefb;
+}
+
+.risk-medium {
+  background-color: #fff3e0;
+  color: #f57c00;
+  border: 1px solid #ffcc02;
+}
+
+.risk-high {
+  background-color: #fce4ec;
+  color: #c2185b;
+  border: 1px solid #f8bbd9;
+}
+
+.risk-critical {
+  background-color: #ffebee;
+  color: #d32f2f;
+  border: 1px solid #ffcdd2;
+}
+
+/* 메타 정보 푸터 스타일 */
+.meta {
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--color-border);
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.meta__source {
+  font-weight: 500;
+}
+
+.meta__date {
+  font-style: italic;
+}
+
+/* 검색 및 필터 컨트롤 스타일 */
+.search-controls {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background-color: var(--color-bg-secondary);
+  border-radius: 8px;
+}
+
+.search-input {
+  flex: 1;
+  padding: 0.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.filter-select {
+  min-width: 150px;
+  padding: 0.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  font-size: 0.9rem;
+  background-color: white;
+}
+
+/* 응급처치 아코디언 스타일 */
+.first-aid-accordion {
+  margin-top: 1rem;
+  border: 1px solid #ff9800;
+  border-radius: 4px;
+  background-color: #fff8e1;
+}
+
+.first-aid-header {
+  background-color: #ffcc02;
+  color: #333;
+  padding: 0.5rem 0.75rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.first-aid-content {
+  padding: 0.75rem;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  display: none;
+  background-color: #fffde7;
+}
+
+.first-aid-content--open {
+  display: block;
+}
+
+/* 법적 고지 페이지 스타일 */
+.legal-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.legal-content h2 {
+  color: var(--color-primary);
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid var(--color-primary);
+  padding-bottom: 0.5rem;
+}
+
+.legal-content ul {
+  margin: 1rem 0;
+  padding-left: 1.5rem;
+}
+
+.legal-content li {
+  margin-bottom: 0.5rem;
+  line-height: 1.6;
+}
+
+.legal-footer {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background-color: var(--color-bg-secondary);
+  border-radius: 8px;
+  border-left: 4px solid var(--color-danger);
+}
+
+.warning-text {
+  background-color: #fff3cd;
+  border: 1px solid #ffeaa7;
+  border-radius: 4px;
+  padding: 1rem;
+  margin-top: 1rem;
+  color: #856404;
+}
+
+/* 반응형 조정 */
+@media (max-width: 768px) {
+  .search-controls {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+  
+  .risk-badge {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.4rem;
+  }
+}
