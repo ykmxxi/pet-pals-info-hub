@@ -1,3 +1,4 @@
+
 /**
  * UI 렌더링 모듈
  */
@@ -54,6 +55,8 @@ export function renderForbiddenFoods() {
         <option value="유제품">유제품</option>
         <option value="음료류">음료류</option>
         <option value="견과류">견과류</option>
+        <option value="감미료">감미료</option>
+        <option value="사료류">사료류</option>
         <option value="기타">기타</option>
       </select>
     </div>
