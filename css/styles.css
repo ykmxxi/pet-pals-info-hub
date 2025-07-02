@@ -59,6 +59,7 @@ body {
   cursor: pointer;
   color: var(--color-text-secondary);
   transition: color 0.3s ease;
+  text-decoration: none;
 }
 
 .tab-button:hover,
@@ -103,6 +104,7 @@ body {
   border-radius: 8px;
   padding: 1rem;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  position: relative;
 }
 
 .card--danger {
@@ -165,6 +167,28 @@ body {
 
 .accordion__icon--open {
   transform: rotate(180deg);
+}
+
+/* Behavior Card Styles */
+.behavior-card {
+  background-color: var(--color-bg);
+  border-radius: 8px;
+  padding: 1rem;
+  border-left: 3px solid var(--color-accent);
+}
+
+.behavior-examples,
+.behavior-action {
+  margin-top: 0.75rem;
+  padding: 0.5rem;
+  background-color: #fff;
+  border-radius: 4px;
+  font-size: 0.85rem;
+}
+
+.behavior-examples strong,
+.behavior-action strong {
+  color: var(--color-accent);
 }
 
 /* Find Hospital Button Styles */
@@ -293,56 +317,6 @@ body {
   animation: fadeIn 0.5s ease-in-out;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .container {
-    padding: 0.5rem;
-  }
-
-  .header__container {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .header__logo {
-    margin-bottom: 0.5rem;
-  }
-
-  .tab-button {
-    margin: 0.25rem;
-    padding: 0.4rem 0.8rem;
-  }
-
-  .section {
-    padding: 0.75rem;
-  }
-
-  .section__title {
-    font-size: 1.2rem;
-    margin-bottom: 1rem;
-  }
-
-  .card-grid {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  }
-
-  .card {
-    padding: 0.75rem;
-  }
-
-  .card__title {
-    font-size: 1rem;
-  }
-
-  .find-hospital-btn {
-    font-size: 0.9rem;
-  }
-
-  .modal__content {
-    width: 95%;
-  }
-}
-
 /* 영양제 상세 정보 모달 스타일 */
 .supplement-detail {
   max-height: 60vh;
@@ -388,22 +362,6 @@ body {
 
 .supplement-detail-btn:hover {
   text-decoration: underline !important;
-}
-
-/* 반응형 모달 조정 */
-@media (max-width: 768px) {
-  .supplement-detail {
-    max-height: 50vh;
-  }
-  
-  .supplement-section h4 {
-    font-size: 0.95rem;
-  }
-  
-  .supplement-section li,
-  .supplement-section p {
-    font-size: 0.9rem;
-  }
 }
 
 /* 위험도별 배지 스타일 */
@@ -506,6 +464,9 @@ body {
   align-items: center;
   font-weight: 600;
   font-size: 0.9rem;
+  border: none;
+  width: 100%;
+  text-align: left;
 }
 
 .first-aid-content {
@@ -561,8 +522,55 @@ body {
   color: #856404;
 }
 
-/* 반응형 조정 */
+/* Responsive Design */
 @media (max-width: 768px) {
+  .container {
+    padding: 0.5rem;
+  }
+
+  .header__container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .header__logo {
+    margin-bottom: 0.5rem;
+  }
+
+  .tab-button {
+    margin: 0.25rem;
+    padding: 0.4rem 0.8rem;
+  }
+
+  .section {
+    padding: 0.75rem;
+  }
+
+  .section__title {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+
+  .card-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+
+  .card {
+    padding: 0.75rem;
+  }
+
+  .card__title {
+    font-size: 1rem;
+  }
+
+  .find-hospital-btn {
+    font-size: 0.9rem;
+  }
+
+  .modal__content {
+    width: 95%;
+  }
+
   .search-controls {
     flex-direction: column;
     gap: 0.75rem;
@@ -577,5 +585,18 @@ body {
   .risk-badge {
     font-size: 0.7rem;
     padding: 0.2rem 0.4rem;
+  }
+
+  .supplement-detail {
+    max-height: 50vh;
+  }
+  
+  .supplement-section h4 {
+    font-size: 0.95rem;
+  }
+  
+  .supplement-section li,
+  .supplement-section p {
+    font-size: 0.9rem;
   }
 }
