@@ -5,6 +5,8 @@
 import { state, updateData } from './state.js';
 import { showLoading, showError } from './utils.js';
 import { renderAllSections } from './renderers.js';
+import { dogData } from './data/dog-data.js';
+import { catData } from './data/cat-data.js';
 
 /**
  * 반려동물 데이터 로드
@@ -17,12 +19,8 @@ export async function loadPetData(pet) {
     // 로딩 상태 표시
     showLoading();
     
-    const response = await fetch(`./public/data/${pet}.json`);
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-    
-    const data = await response.json();
+    // JavaScript 모듈에서 직접 데이터 가져오기
+    const data = pet === 'dog' ? dogData : catData;
     updateData(data);
     
     console.log(`${pet} 데이터 로딩 완료:`, data);
