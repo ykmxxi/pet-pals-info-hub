@@ -1,10 +1,50 @@
 export const dogData = {
   forbiddenFoods: [
-    { "name": "초콜릿", "reason": "테오브로민 중독 위험. 심장과 신경계에 악영향을 미칠 수 있습니다." },
-    { "name": "양파", "reason": "적혈구 파괴를 유발하여 빈혈을 일으킬 수 있습니다." },
-    { "name": "포도", "reason": "신장 손상을 일으킬 수 있으며, 급성 신부전의 위험이 있습니다." },
-    { "name": "마카다미아 견과류", "reason": "근육 약화, 구토, 발열 등의 증상을 유발할 수 있습니다." },
-    { "name": "아보카도", "reason": "퍼신이라는 독성 물질이 소화기 장애를 일으킬 수 있습니다." }
+    { 
+      name: "초콜릿", 
+      category: "과자류",
+      reason: "테오브로민 중독 위험. 심장과 신경계에 악영향을 미칠 수 있습니다.",
+      riskLevel: "critical",
+      firstAid: "즉시 동물병원 방문. 토하게 하지 마세요.",
+      source: "한국수의사회",
+      lastUpdated: "2024-12-15"
+    },
+    { 
+      name: "양파", 
+      category: "채소류",
+      reason: "적혈구 파괴를 유발하여 빈혈을 일으킬 수 있습니다.",
+      riskLevel: "critical",
+      firstAid: "즉시 토하게 하고 응급실 이송하세요. 물을 많이 먹이지 마세요.",
+      source: "한국수의사회",
+      lastUpdated: "2024-12-14"
+    },
+    { 
+      name: "포도", 
+      category: "과일류",
+      reason: "신장 손상을 일으킬 수 있으며, 급성 신부전의 위험이 있습니다.",
+      riskLevel: "high",
+      firstAid: "토하게 하고 수분 섭취 모니터링 후 병원 내원하세요.",
+      source: "수의신장학회",
+      lastUpdated: "2024-12-13"
+    },
+    { 
+      name: "마카다미아 견과류", 
+      category: "견과류",
+      reason: "근육 약화, 구토, 발열 등의 증상을 유발할 수 있습니다.",
+      riskLevel: "medium",
+      firstAid: "섭취 즉시 동물병원 방문.",
+      source: "반려동물영양학회",
+      lastUpdated: "2024-12-12"
+    },
+    { 
+      name: "아보카도", 
+      category: "과일류",
+      reason: "퍼신이라는 독성 물질이 소화기 장애를 일으킬 수 있습니다.",
+      riskLevel: "medium",
+      firstAid: "소량 섭취 시 관찰, 이상 증상 시 병원 방문.",
+      source: "반려동물영양학회",
+      lastUpdated: "2024-12-11"
+    }
   ],
   
   behaviors: [
