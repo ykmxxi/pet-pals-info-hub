@@ -1,3 +1,4 @@
+
 /**
  * 금지 음식 목록 렌더링
  * @param {Array} foods - 금지 음식 데이터 배열
@@ -119,6 +120,27 @@ export function renderSupplements(supplements) {
       });
     });
   });
+}
+
+/**
+ * 모든 섹션 렌더링
+ */
+export function renderAllSections() {
+  const currentData = window.currentPetData;
+  if (!currentData) return;
+
+  // 각 섹션별로 렌더링
+  if (currentData.forbiddenFoods) {
+    renderForbiddenFoods(currentData.forbiddenFoods);
+  }
+  
+  if (currentData.behaviors) {
+    renderBehaviors(currentData.behaviors);
+  }
+  
+  if (currentData.supplements) {
+    renderSupplements(currentData.supplements);
+  }
 }
 
 /**
@@ -244,3 +266,8 @@ export function toggleAccordion(element) {
     element.querySelector('span').textContent = '-';
   }
 }
+
+// 전역 함수로 등록 (HTML onclick에서 사용하기 위해)
+window.showSupplementDetail = showSupplementDetail;
+window.closeSupplementModal = closeSupplementModal;
+window.toggleAccordion = toggleAccordion;
