@@ -10,7 +10,7 @@ export function renderForbiddenFoods(foods) {
   container.innerHTML = foods.map(food => `
     <div class="food-item" data-risk="${food.risk}">
       <h3>${food.name}</h3>
-      <p>${food.description}</p>
+      <p>${food.reason || food.description || ''}</p>
       <span class="risk-label ${food.risk}">${food.risk}</span>
     </div>
   `).join('');
