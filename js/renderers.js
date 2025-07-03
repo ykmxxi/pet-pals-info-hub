@@ -1,3 +1,4 @@
+import { getRiskLevelIcon, getRiskLevelClass } from './utils/data-utils.js';
 
 /**
  * 금지 음식 목록 렌더링
@@ -7,13 +8,17 @@ export function renderForbiddenFoods(foods) {
   const container = document.getElementById('forbidden-foods');
   if (!container) return;
 
-  container.innerHTML = foods.map(food => `
-    <div class="food-item" data-risk="${food.risk}">
-      <h3>${food.name}</h3>
-      <p>${food.reason || food.description || ''}</p>
-      <span class="risk-label ${food.risk}">${food.risk}</span>
-    </div>
-  `).join('');
+  container.innerHTML = foods.map(food => {
+    const riskIcon = getRiskLevelIcon(food.risk);
+    const riskClass = getRiskLevelClass(food.risk);
+    return `
+      <div class="food-item" data-risk="${food.risk}">
+        <h3>${food.name}</h3>
+        <p>${food.reason || food.description || ''}</p>
+        <span class="risk-label ${riskClass}">${riskIcon} ${food.risk}</span>
+      </div>
+    `;
+  }).join('');
 }
 
 /**
