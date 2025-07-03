@@ -107,52 +107,72 @@ export const dogBehaviors = [
   {
     title: "꼬리 흔들기",
     description: "강아지가 꼬리를 흔드는 것은 일반적으로 행복하거나 흥분했다는 신호입니다. 하지만 때로는 불안하거나 경계하는 상황에서도 꼬리를 흔들 수 있습니다. 꼬리의 위치와 흔드는 속도를 함께 살펴봐야 합니다.",
-    category: "Communication"
+    category: "Communication",
+    image: "https://images.unsplash.com/photo-1552053831-71594a27632d?w=300&h=200&fit=crop",
+    tips: "꼬리가 높이 올라가 있으면서 빠르게 흔들면 흥분, 낮게 천천히 흔들면 불안함을 나타낼 수 있습니다."
   },
   {
     title: "짖기",
     description: "강아지가 짖는 이유는 다양합니다. 경고, 불안, 심심함, 주의 끌기 등 여러 가지 이유로 짖을 수 있습니다. 짖는 상황과 강아지의 다른 행동을 함께 고려하여 이유를 파악해야 합니다.",
-    category: "Communication"
+    category: "Communication",
+    image: "https://images.unsplash.com/photo-1568531841356-eb5ca4999698?w=300&h=200&fit=crop",
+    tips: "갑작스러운 짖음은 외부 자극에 대한 경계 신호일 수 있으며, 반복적인 짖음은 심심함이나 분리 불안을 나타낼 수 있습니다."
   },
   {
     title: "낑낑거림",
     description: "강아지가 낑낑거리는 것은 보통 무언가를 원하거나 불편함을 느낄 때 나타내는 행동입니다. 배고픔, 갈증, 통증, 불안 등 다양한 이유로 낑낑거릴 수 있습니다.",
-    category: "Emotional Expression"
+    category: "Emotional Expression",
+    image: "https://images.unsplash.com/photo-1591160833167-c9572492dd81?w=300&h=200&fit=crop",
+    tips: "낑낑거림이 지속될 경우, 즉시 필요한 것을 제공하거나 수의사와 상담하여 건강 문제를 확인해야 합니다."
   },
   {
     title: "하품",
     description: "강아지가 하품을 하는 것은 피곤하거나 지루하다는 신호일 수 있지만, 스트레스를 받거나 불안할 때도 하품을 할 수 있습니다. 특히 낯선 환경이나 상황에서 하품을 한다면 스트레스의 신호일 가능성이 높습니다.",
-    category: "Emotional Expression"
+    category: "Emotional Expression",
+    image: "https://images.unsplash.com/photo-1558981403-c5551c5e66a2?w=300&h=200&fit=crop",
+    tips: "연속적인 하품은 불안감을 나타낼 수 있으므로, 편안한 환경을 제공하거나 스트레스 요인을 제거해주는 것이 좋습니다."
   },
   {
     title: "핥기",
     description: "강아지가 핥는 행동은 애정을 표현하거나 관심을 끌기 위한 것일 수 있습니다. 또한, 불안하거나 스트레스를 받을 때 자신을 진정시키기 위해 핥을 수도 있습니다. 과도한 핥기는 피부 문제나 알레르기, 강박 행동의 신호일 수 있습니다.",
-    category: "Social Interaction"
+    category: "Social Interaction",
+    image: "https://images.unsplash.com/photo-1573382993553-dd9efcfc8a55?w=300&h=200&fit=crop",
+    tips: "지나친 핥기는 피부병이나 스트레스의 원인이 될 수 있으므로, 원인을 파악하고 적절한 조치를 취해야 합니다."
   },
   {
     title: "엎드리기",
     description: "강아지가 엎드리는 것은 복종, 편안함, 또는 두려움을 나타내는 신호일 수 있습니다. 상황에 따라 강아지의 감정을 파악해야 합니다. 예를 들어, 주인이 화를 내고 있을 때 엎드린다면 복종의 의미일 수 있습니다.",
-    category: "Body Language"
+    category: "Body Language",
+    image: "https://images.unsplash.com/photo-1543466835-00a7907ca9be?w=300&h=200&fit=crop",
+    tips: "갑작스럽게 엎드리는 행동은 통증이나 불편함을 나타낼 수 있으므로, 주의 깊게 관찰해야 합니다."
   },
   {
     title: "몸 떨기",
     description: "강아지가 몸을 떠는 것은 추위를 느끼거나 두려움, 불안을 느낄 때 나타나는 행동입니다. 또한, 통증이나 질병의 신호일 수도 있습니다. 몸 떨림이 계속된다면 수의사에게 상담을 받는 것이 좋습니다.",
-    category: "Physical Condition"
+    category: "Physical Condition",
+    image: "https://images.unsplash.com/photo-1580269437439-c499145afa4f?w=300&h=200&fit=crop",
+    tips: "지속적인 몸 떨림은 건강 문제의 신호일 수 있으므로, 수의사의 진료를 받는 것이 중요합니다."
   },
   {
     title: "숨기",
     description: "강아지가 숨는 것은 두려움, 불안, 또는 불편함을 느낄 때 나타나는 행동입니다. 천둥, 불꽃놀이, 낯선 사람 등 강아지를 불안하게 만드는 요인을 피하기 위해 숨을 수 있습니다.",
-    category: "Emotional Expression"
+    category: "Emotional Expression",
+    image: "https://images.unsplash.com/photo-1554943052-503b49999857?w=300&h=200&fit=crop",
+    tips: "숨는 행동은 불안의 표현이므로, 안전한 공간을 제공하고 불안 요인을 제거해주는 것이 필요합니다."
   },
   {
     title: "배변 실수",
     description: "강아지가 훈련된 장소가 아닌 다른 곳에서 배변을 하는 것은 여러 가지 이유가 있을 수 있습니다. 스트레스, 불안, 질병, 또는 훈련 부족 등이 원인일 수 있습니다. 수의사와 상담하여 정확한 원인을 파악하고 해결해야 합니다.",
-    category: "Health & Training"
+    category: "Health & Training",
+    image: "https://images.unsplash.com/photo-1616016998421-590949c2ca9b?w=300&h=200&fit=crop",
+    tips: "배변 실수는 건강 문제나 스트레스의 신호일 수 있으므로, 수의사와 상담하여 원인을 파악하는 것이 중요합니다."
   },
   {
     title: "물건 씹기",
     description: "강아지가 물건을 씹는 것은 자연스러운 행동이지만, 과도하게 씹는다면 심심함, 스트레스, 또는 분리 불안의 신호일 수 있습니다. 적절한 장난감을 제공하고 충분한 운동을 시켜주는 것이 좋습니다.",
-    category: "Behavioral Issues"
+    category: "Behavioral Issues",
+    image: "https://images.unsplash.com/photo-1561755575-5585b04cb29f?w=300&h=200&fit=crop",
+    tips: "물건 씹기는 스트레스 해소의 한 방법일 수 있으므로, 적절한 씹기 장난감을 제공하여 파괴적인 행동을 줄일 수 있습니다."
   }
 ];
 
@@ -249,3 +269,10 @@ export const dogSupplements = [
     image: "https://images.unsplash.com/photo-1518717758536-85ae29035b6d?w=300"
   }
 ];
+
+// 통합 데이터 객체 export 추가
+export const dogData = {
+  forbiddenFoods,
+  behaviors: dogBehaviors,
+  supplements: dogSupplements
+};
