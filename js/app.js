@@ -31,9 +31,14 @@ async function initApp() {
 function bindEvents() {
   // 탭 버튼 클릭 이벤트
   elements.tabButtons.forEach(button => {
-    // 법적 고지 링크인 경우 기본 동작 허용 (페이지 이동)
+    // 법적 고지 링크인 경우 - 배포 환경에서도 작동하도록 처리
     if (button.tagName === 'A' && button.getAttribute('href') === 'legalnotice.html') {
-      // 법적 고지 링크는 기본 동작 허용, 이벤트 리스너 추가하지 않음
+      button.addEventListener('click', (e) => {
+        e.preventDefault();
+        // 현재 도메인에서 법적 고지 페이지로 이동
+        const currentUrl = window.location.origin;
+        window.location.href = `${currentUrl}/legalnotice.html`;
+      });
       return;
     }
     

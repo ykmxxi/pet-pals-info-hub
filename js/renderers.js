@@ -1,3 +1,4 @@
+
 import { getRiskLevelIcon, getRiskLevelClass } from './utils/data-utils.js';
 
 /**
@@ -16,6 +17,12 @@ export function renderForbiddenFoods(foods) {
         <h3>${food.name}</h3>
         <p>${food.reason || food.description || ''}</p>
         <span class="risk-label ${riskClass}">${riskIcon} ${food.risk}</span>
+        ${food.emergency ? `
+          <div class="emergency-info">
+            <h4>🚨 응급처치</h4>
+            <p>${food.emergency}</p>
+          </div>
+        ` : ''}
       </div>
     `;
   }).join('');
