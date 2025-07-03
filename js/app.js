@@ -30,9 +30,12 @@ async function initApp() {
  * 이벤트 리스너 바인딩
  */
 function bindEvents() {
-  // 탭 버튼 클릭 이벤트
+  // 탭 버튼 클릭 이벤트 (법적 고지 링크 제외)
   elements.tabButtons.forEach(button => {
-    button.addEventListener('click', handleTabClick);
+    // 법적 고지 링크가 아닌 경우에만 탭 클릭 이벤트 바인딩
+    if (!button.href && button.dataset.pet) {
+      button.addEventListener('click', handleTabClick);
+    }
   });
   
   // 동물병원 찾기 버튼 클릭 이벤트
@@ -66,16 +69,22 @@ function bindEvents() {
  * @param {Event} event - 클릭 이벤트
  */
 async function handleTabClick(event) {
+  event.preventDefault();
   const pet = event.target.dataset.pet;
   
   if (pet === state.currentPet) return;
   
   console.log(`탭 전환: ${state.currentPet} → ${pet}`);
   
+  // 부드러운 전환을 위한 페이드 아웃
+  document.body.classList.add('transitioning');
+  
   // 탭 버튼 상태 업데이트
   elements.tabButtons.forEach(btn => {
-    btn.classList.remove('tab-button--active');
-    btn.setAttribute('aria-expanded', 'false');
+    if (btn.dataset.pet) {
+      btn.classList.remove('tab-button--active');
+      btn.setAttribute('aria-expanded', 'false');
+    }
   });
   
   event.target.classList.add('tab-button--active');
@@ -83,7 +92,12 @@ async function handleTabClick(event) {
   
   // 상태 업데이트 및 데이터 로드
   updateCurrentPet(pet);
-  await loadPetData(pet);
+  
+  // 약간의 지연 후 데이터 로드 (부드러운 전환을 위해)
+  setTimeout(async () => {
+    await loadPetData(pet);
+    document.body.classList.remove('transitioning');
+  }, 150);
 }
 
 // 앱 초기화

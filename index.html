@@ -15,13 +15,16 @@
             </div>
             <nav class="header__nav">
                 <button class="tab-button tab-button--active" data-pet="dog" aria-expanded="true">
-                    🐕 강아지
+                    <span class="pet-icon">🐕</span>
+                    <span>강아지</span>
                 </button>
                 <button class="tab-button" data-pet="cat" aria-expanded="false">
-                    🐱 고양이
+                    <span class="pet-icon">🐱</span>
+                    <span>고양이</span>
                 </button>
-                <a href="legalnotice.html" class="tab-button" style="margin-left: 1rem;">
-                    📋 법적 고지
+                <a href="legalnotice.html" class="tab-button">
+                    <span class="pet-icon">📋</span>
+                    <span>법적 고지</span>
                 </a>
             </nav>
         </div>
@@ -31,7 +34,18 @@
         <div class="container">
             <!-- 금지 음식 섹션 -->
             <section class="section">
-                <h2 class="section__title">⚠️ 금지 음식</h2>
+                <div class="section-header">
+                    <h2 class="section__title">⚠️ 금지 음식</h2>
+                    <div class="search-filter-container">
+                        <input type="text" id="food-search" class="search-input" placeholder="음식 이름 검색...">
+                        <select id="risk-filter" class="filter-select">
+                            <option value="">전체 위험도</option>
+                            <option value="high">높음</option>
+                            <option value="medium">보통</option>
+                            <option value="low">낮음</option>
+                        </select>
+                    </div>
+                </div>
                 <div id="forbidden-foods">
                     <!-- 동적으로 생성됩니다 -->
                 </div>
@@ -45,7 +59,7 @@
                         💬 행동 상담하기
                     </button>
                 </h2>
-                <div class="accordion" id="behaviors">
+                <div class="behavior-grid" id="behaviors">
                     <!-- 동적으로 생성됩니다 -->
                 </div>
             </section>
@@ -88,6 +102,29 @@
                 </div>
                 <div class="hospital-list" id="hospital-list">
                     <!-- 동적으로 생성됩니다 -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 행동 상담 모달 -->
+    <div class="modal" id="behavior-chat-modal">
+        <div class="modal__content">
+            <div class="modal__header">
+                <h3>🔍 행동 상담</h3>
+                <button class="modal__close" onclick="closeBehaviorChat()" aria-label="모달 닫기">&times;</button>
+            </div>
+            <div class="modal__body">
+                <div id="chat-messages" class="chat-messages">
+                    <div class="chat-message bot-message">
+                        <div class="message-content">
+                            안녕하세요! 반려동물의 행동에 대해 궁금한 점이 있으시면 언제든 물어보세요. 🐾
+                        </div>
+                    </div>
+                </div>
+                <div class="chat-input-container">
+                    <input type="text" id="chat-input" class="chat-input" placeholder="반려동물의 행동을 설명해주세요...">
+                    <button id="chat-send" class="chat-send-btn">전송</button>
                 </div>
             </div>
         </div>
