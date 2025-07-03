@@ -30,11 +30,11 @@ async function initApp() {
  * 이벤트 리스너 바인딩
  */
 function bindEvents() {
-  // 탭 버튼 클릭 이벤트 (법적 고지 링크 제외)
+  // 탭 버튼 클릭 이벤트
   elements.tabButtons.forEach(button => {
-    // 법적 고지 링크인 경우 기본 동작 허용
-    if (button.href) {
-      // 법적 고지 링크는 기본 동작 허용 (preventDefault 하지 않음)
+    // 법적 고지 링크인 경우 기본 동작 허용 (페이지 이동)
+    if (button.getAttribute('href') === 'legalnotice.html') {
+      // 법적 고지 링크는 기본 동작 허용
       return;
     }
     

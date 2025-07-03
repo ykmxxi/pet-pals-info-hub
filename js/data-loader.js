@@ -21,6 +21,11 @@ export async function loadPetData(pet) {
     
     // JavaScript 모듈에서 직접 데이터 가져오기
     const data = pet === 'dog' ? dogData : catData;
+    
+    // 전역 변수에 데이터 저장 (렌더러에서 사용)
+    window.currentPetData = data;
+    
+    // 상태 업데이트
     updateData(data);
     
     console.log(`${pet} 데이터 로딩 완료:`, data);

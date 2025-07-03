@@ -22,7 +22,7 @@ export function renderForbiddenFoods(foods) {
  */
 export function renderBehaviors(behaviors) {
   const container = document.getElementById('behaviors');
-  if (!container) return;
+  if (!container || !behaviors) return;
 
   container.innerHTML = behaviors.map(behavior => `
     <div class="behavior-item">
@@ -35,7 +35,7 @@ export function renderBehaviors(behaviors) {
             <span>+</span>
           </div>
           <div class="accordion-content">
-            ${behavior.solution}
+            ${behavior.solution || behavior.tips || '추가 정보가 없습니다.'}
           </div>
         </div>
       </div>
@@ -127,18 +127,26 @@ export function renderSupplements(supplements) {
  */
 export function renderAllSections() {
   const currentData = window.currentPetData;
-  if (!currentData) return;
+  console.log('렌더링할 데이터:', currentData);
+  
+  if (!currentData) {
+    console.error('currentPetData가 없습니다.');
+    return;
+  }
 
   // 각 섹션별로 렌더링
-  if (currentData.forbiddenFoods) {
+  if (currentData.forbiddenFoods && Array.isArray(currentData.forbiddenFoods)) {
+    console.log('금지 음식 렌더링:', currentData.forbiddenFoods.length, '개');
     renderForbiddenFoods(currentData.forbiddenFoods);
   }
   
-  if (currentData.behaviors) {
+  if (currentData.behaviors && Array.isArray(currentData.behaviors)) {
+    console.log('행동 해석 렌더링:', currentData.behaviors.length, '개');
     renderBehaviors(currentData.behaviors);
   }
   
-  if (currentData.supplements) {
+  if (currentData.supplements && Array.isArray(currentData.supplements)) {
+    console.log('영양제 렌더링:', currentData.supplements.length, '개');
     renderSupplements(currentData.supplements);
   }
 }
