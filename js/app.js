@@ -32,8 +32,14 @@ async function initApp() {
 function bindEvents() {
   // 탭 버튼 클릭 이벤트 (법적 고지 링크 제외)
   elements.tabButtons.forEach(button => {
-    // 법적 고지 링크가 아닌 경우에만 탭 클릭 이벤트 바인딩
-    if (!button.href && button.dataset.pet) {
+    // 법적 고지 링크인 경우 기본 동작 허용
+    if (button.href) {
+      // 법적 고지 링크는 기본 동작 허용 (preventDefault 하지 않음)
+      return;
+    }
+    
+    // 펫 탭 버튼인 경우에만 탭 클릭 이벤트 바인딩
+    if (button.dataset.pet) {
       button.addEventListener('click', handleTabClick);
     }
   });

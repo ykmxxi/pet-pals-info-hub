@@ -644,3 +644,336 @@ body.transitioning .main {
         grid-template-columns: 1fr;
     }
 }
+
+/* Supplement Section Styles */
+.supplement-filters {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.category-filter-btn {
+    padding: 0.5rem 1rem;
+    border: 2px solid #667eea;
+    background: white;
+    color: #667eea;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.category-filter-btn:hover {
+    background: #667eea;
+    color: white;
+    transform: translateY(-1px);
+}
+
+.category-filter-btn.active {
+    background: #667eea;
+    color: white;
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+}
+
+.supplement-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+}
+
+.supplement-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.supplement-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.supplement-image {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+}
+
+.supplement-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.supplement-rating {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 0.25rem 0.5rem;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.8rem;
+}
+
+.rating-stars {
+    color: #ffd700;
+}
+
+.rating-score {
+    font-weight: 600;
+    color: #333;
+}
+
+.supplement-content {
+    padding: 1.25rem;
+}
+
+.supplement-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.75rem;
+}
+
+.supplement-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+    flex: 1;
+}
+
+.supplement-category {
+    background: #e8f2ff;
+    color: #667eea;
+    padding: 0.25rem 0.5rem;
+    border-radius: 10px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.supplement-description {
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+}
+
+.supplement-meta {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+    font-size: 0.85rem;
+}
+
+.age-group, .price {
+    color: #555;
+}
+
+.supplement-benefits {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.benefit-tag {
+    background: #f0f9ff;
+    color: #0284c7;
+    padding: 0.25rem 0.5rem;
+    border-radius: 8px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.supplement-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.supplement-detail-btn {
+    background: #667eea;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: background 0.3s ease;
+}
+
+.supplement-detail-btn:hover {
+    background: #5469b5;
+}
+
+.review-count {
+    color: #666;
+    font-size: 0.8rem;
+}
+
+/* Supplement Detail Modal Styles */
+.supplement-modal-content {
+    max-width: 800px;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.supplement-detail-layout {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 2rem;
+}
+
+.supplement-detail-image img {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.supplement-detail-rating {
+    text-align: center;
+}
+
+.supplement-detail-rating .stars {
+    color: #ffd700;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.rating-info {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.rating-score {
+    font-weight: 600;
+    color: #333;
+}
+
+.info-section {
+    margin-bottom: 1.5rem;
+}
+
+.info-section h4 {
+    color: #333;
+    margin-bottom: 0.75rem;
+    font-size: 1rem;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 0.5rem;
+}
+
+.info-grid {
+    display: grid;
+    gap: 0.5rem;
+}
+
+.info-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #f5f5f5;
+}
+
+.info-label {
+    font-weight: 500;
+    color: #666;
+}
+
+.info-value {
+    color: #333;
+    font-weight: 600;
+}
+
+.dosage-info {
+    background: #f8f9ff;
+    padding: 1rem;
+    border-radius: 8px;
+    border-left: 4px solid #667eea;
+    color: #333;
+    margin: 0;
+}
+
+.benefits-list, .ingredients-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.ingredient-tag {
+    background: #fff7ed;
+    color: #ea580c;
+    padding: 0.25rem 0.5rem;
+    border-radius: 8px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.warning-section {
+    background: #fef2f2;
+    padding: 1rem;
+    border-radius: 8px;
+    border-left: 4px solid #ef4444;
+}
+
+.warning-section h4 {
+    color: #dc2626;
+    border-bottom-color: #fca5a5;
+}
+
+.precautions-list {
+    margin: 0;
+    padding-left: 1.5rem;
+    color: #555;
+}
+
+.precautions-list li {
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+}
+
+/* Responsive Styles for Supplements */
+@media (max-width: 768px) {
+    .supplement-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .supplement-detail-layout {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .supplement-modal-content {
+        width: 95%;
+        margin: 5% auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .supplement-filters {
+        justify-content: center;
+    }
+    
+    .category-filter-btn {
+        font-size: 0.8rem;
+        padding: 0.4rem 0.8rem;
+    }
+    
+    .supplement-header {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .supplement-category {
+        align-self: flex-start;
+    }
+}

@@ -1,383 +1,246 @@
-
 /**
- * UI 렌더링 모듈
+ * 금지 음식 목록 렌더링
+ * @param {Array} foods - 금지 음식 데이터 배열
  */
-import { state } from './state.js';
-import { elements } from './dom-elements.js';
-import { escapeHtml } from './utils.js';
-import { sortFoodsAlphabetically, getRiskLevelClass, getRiskLevelIcon } from './utils/data-utils.js';
+export function renderForbiddenFoods(foods) {
+  const container = document.getElementById('forbidden-foods');
+  if (!container) return;
 
-/**
- * 모든 섹션 렌더링
- */
-export function renderAllSections() {
-  renderForbiddenFoods();
-  renderBehaviors();
-  renderSupplements();
-  
-  // 페이드인 애니메이션 적용
-  setTimeout(() => {
-    document.querySelectorAll('.section').forEach(section => {
-      section.classList.add('fade-in');
-    });
-  }, 100);
+  container.innerHTML = foods.map(food => `
+    <div class="food-item" data-risk="${food.risk}">
+      <h3>${food.name}</h3>
+      <p>${food.description}</p>
+      <span class="risk-label ${food.risk}">${food.risk}</span>
+    </div>
+  `).join('');
 }
 
 /**
- * 금지 음식 카드 렌더링
+ * 행동 목록 렌더링
+ * @param {Array} behaviors - 행동 데이터 배열
  */
-export function renderForbiddenFoods() {
-  if (!state.data || !state.data.forbiddenFoods) {
-    console.error('금지 음식 데이터가 없습니다');
-    return;
-  }
-  
-  let foods = [...state.data.forbiddenFoods];
-  
-  // 사전순 정렬
-  foods = sortFoodsAlphabetically(foods);
-  
-  // 검색 및 필터 컨트롤 HTML
-  const controlsHtml = `
-    <div class="search-controls">
-      <input type="search" 
-             id="food-search" 
-             class="search-input" 
-             placeholder="음식 이름으로 검색..."
-             autocomplete="off">
-      <select id="food-filter" class="filter-select">
-        <option value="">모든 카테고리</option>
-        <option value="채소류">채소류</option>
-        <option value="향신료">향신료</option>
-        <option value="과자류">과자류</option>
-        <option value="과일류">과일류</option>
-        <option value="어류">어류</option>
-        <option value="유제품">유제품</option>
-        <option value="음료류">음료류</option>
-        <option value="견과류">견과류</option>
-        <option value="감미료">감미료</option>
-        <option value="사료류">사료류</option>
-        <option value="기타">기타</option>
-      </select>
+export function renderBehaviors(behaviors) {
+  const container = document.getElementById('behaviors');
+  if (!container) return;
+
+  container.innerHTML = behaviors.map(behavior => `
+    <div class="behavior-item">
+      <h3 class="behavior-title">${behavior.title}</h3>
+      <p class="behavior-description">${behavior.description}</p>
+      <div class="accordion">
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <h3>원인 및 해결책</h3>
+            <span>+</span>
+          </div>
+          <div class="accordion-content">
+            ${behavior.solution}
+          </div>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+/**
+ * 영양제 목록 렌더링 (개선된 버전)
+ * @param {Array} supplements - 영양제 데이터 배열
+ */
+export function renderSupplements(supplements) {
+  const container = document.getElementById('supplements');
+  if (!container) return;
+
+  // 카테고리별 필터 버튼 추가
+  const categories = [...new Set(supplements.map(s => s.category))];
+  const filterButtons = categories.map(category => 
+    `<button class="category-filter-btn" data-category="${category}">${category}</button>`
+  ).join('');
+
+  container.innerHTML = `
+    <div class="supplement-filters">
+      <button class="category-filter-btn active" data-category="all">전체</button>
+      ${filterButtons}
+    </div>
+    <div class="supplement-grid" id="supplement-grid">
+      ${supplements.map(supplement => `
+        <div class="supplement-card" data-category="${supplement.category}">
+          <div class="supplement-image">
+            <img src="${supplement.image}" alt="${supplement.name}" loading="lazy">
+            <div class="supplement-rating">
+              <span class="rating-stars">${'★'.repeat(Math.floor(supplement.rating))}${'☆'.repeat(5-Math.floor(supplement.rating))}</span>
+              <span class="rating-score">${supplement.rating}</span>
+            </div>
+          </div>
+          <div class="supplement-content">
+            <div class="supplement-header">
+              <h3 class="supplement-name">${supplement.name}</h3>
+              <span class="supplement-category">${supplement.category}</span>
+            </div>
+            <p class="supplement-description">${supplement.description}</p>
+            <div class="supplement-meta">
+              <span class="age-group">👶 ${supplement.ageGroup}</span>
+              <span class="price">💰 ${supplement.price}</span>
+            </div>
+            <div class="supplement-benefits">
+              ${supplement.benefits.slice(0, 2).map(benefit => 
+                `<span class="benefit-tag">${benefit}</span>`
+              ).join('')}
+            </div>
+            <div class="supplement-actions">
+              <button class="supplement-detail-btn" onclick="showSupplementDetail(${supplement.id})">
+                자세히 보기
+              </button>
+              <span class="review-count">리뷰 ${supplement.reviews.toLocaleString()}개</span>
+            </div>
+          </div>
+        </div>
+      `).join('')}
     </div>
   `;
-  
-  const html = foods.map(food => `
-    <article class="card card--danger" data-category="${escapeHtml(food.category)}" data-name="${escapeHtml(food.name.toLowerCase())}">
-      <div class="risk-badge ${getRiskLevelClass(food.riskLevel)}">
-        ${getRiskLevelIcon(food.riskLevel)} ${food.riskLevel.toUpperCase()}
-      </div>
-      <h3 class="card__title">${escapeHtml(food.name)}</h3>
-      <div class="card__content">
-        <p>${escapeHtml(food.reason)}</p>
-        
-        <div class="first-aid-accordion">
-          <button class="first-aid-header" onclick="toggleFirstAid(this)">
-            <span>🚨 응급처치 방법</span>
-            <span class="accordion__icon">▼</span>
-          </button>
-          <div class="first-aid-content">
-            ${escapeHtml(food.firstAid)}
-          </div>
-        </div>
-        
-        <div class="meta">
-          <span class="meta__source">출처: ${escapeHtml(food.source)}</span>
-          <span class="meta__date">${food.lastUpdated}</span>
-        </div>
-      </div>
-    </article>
-  `).join('');
-  
-  elements.forbiddenFoodsContainer.innerHTML = controlsHtml + '<div class="card-grid" id="foods-grid">' + html + '</div>';
-  
-  // 검색 및 필터 이벤트 리스너 등록
-  setupFoodFilters();
-  
-  console.log(`금지 음식 ${foods.length}개 렌더링 완료`);
-}
 
-/**
- * 검색 및 필터 기능 설정
- */
-function setupFoodFilters() {
-  const searchInput = document.getElementById('food-search');
-  const filterSelect = document.getElementById('food-filter');
-  let searchTimeout;
-  
-  if (searchInput) {
-    searchInput.addEventListener('input', () => {
-      clearTimeout(searchTimeout);
-      searchTimeout = setTimeout(filterFoods, 300);
+  // 카테고리 필터 이벤트 바인딩
+  const filterBtns = container.querySelectorAll('.category-filter-btn');
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      // 활성 버튼 업데이트
+      filterBtns.forEach(b => b.classList.remove('active'));
+      e.target.classList.add('active');
+      
+      // 필터링
+      const category = e.target.dataset.category;
+      const cards = container.querySelectorAll('.supplement-card');
+      
+      cards.forEach(card => {
+        if (category === 'all' || card.dataset.category === category) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
     });
-  }
-  
-  if (filterSelect) {
-    filterSelect.addEventListener('change', filterFoods);
-  }
-}
-
-/**
- * 음식 필터링 함수
- */
-function filterFoods() {
-  const searchInput = document.getElementById('food-search');
-  const filterSelect = document.getElementById('food-filter');
-  const foodCards = document.querySelectorAll('#foods-grid .card');
-  
-  const searchTerm = searchInput ? searchInput.value.toLowerCase().trim() : '';
-  const selectedCategory = filterSelect ? filterSelect.value : '';
-  
-  foodCards.forEach(card => {
-    const foodName = card.dataset.name || '';
-    const foodCategory = card.dataset.category || '';
-    
-    const matchesSearch = !searchTerm || foodName.includes(searchTerm);
-    const matchesCategory = !selectedCategory || foodCategory === selectedCategory;
-    
-    if (matchesSearch && matchesCategory) {
-      card.style.display = 'block';
-    } else {
-      card.style.display = 'none';
-    }
   });
-  
-  console.log(`필터링 적용: 검색어="${searchTerm}", 카테고리="${selectedCategory}"`);
 }
 
 /**
- * 응급처치 아코디언 토글
- * @param {HTMLElement} button - 클릭된 버튼 요소
+ * 영양제 상세 정보 모달 표시 (개선된 버전)
+ * @param {number} supplementId - 영양제 ID
  */
-window.toggleFirstAid = function(button) {
-  const content = button.nextElementSibling;
-  const icon = button.querySelector('.accordion__icon');
+export function showSupplementDetail(supplementId) {
+  // 현재 펫 데이터에서 영양제 찾기
+  const currentSupplements = window.currentPetData?.supplements || [];
+  const supplement = currentSupplements.find(s => s.id == supplementId);
   
-  if (content.classList.contains('first-aid-content--open')) {
-    content.classList.remove('first-aid-content--open');
-    icon.classList.remove('accordion__icon--open');
-  } else {
-    content.classList.add('first-aid-content--open');
-    icon.classList.add('accordion__icon--open');
-  }
-};
+  if (!supplement) return;
 
-export function renderBehaviors() {
-  if (!state.data || !state.data.behaviors) {
-    console.error('행동 해석 데이터가 없습니다');
-    return;
-  }
-  
-  const behaviors = state.data.behaviors;
-  
-  // 다중 선택 가능한 아코디언으로 변경, 카드 레이아웃 적용
-  const html = behaviors.map((behavior, index) => `
-    <div class="accordion__item">
-      <button class="accordion__header" 
-              data-index="${index}"
-              data-multi="true"
-              aria-expanded="false"
-              onclick="window.toggleAccordion(${index})">
-        <span class="behavior-keyword">${escapeHtml(behavior.keyword)}</span>
-        <span class="accordion__icon">▼</span>
-      </button>
-      <div class="accordion__content" id="accordion-${index}">
-        <div class="behavior-card">
-          <div class="behavior-content">
-            <div class="behavior-image-section">
-              <img src="${behavior.image}" alt="${escapeHtml(behavior.keyword)} 행동" class="behavior-image" loading="lazy" onerror="this.style.display='none'">
-            </div>
-            <div class="behavior-info-section">
-              <div class="behavior-meaning">
-                <h4>🔍 행동 의미</h4>
-                <p>${escapeHtml(behavior.meaning)}</p>
-              </div>
-              <div class="behavior-examples">
-                <h4>📝 예시 상황</h4>
-                <p>${escapeHtml(behavior.examples)}</p>
-              </div>
-              <div class="behavior-action">
-                <h4>💡 대응 방법</h4>
-                <p>${escapeHtml(behavior.action)}</p>
-              </div>
-            </div>
-          </div>
-          <div class="meta">
-            <span class="meta__source">출처: ${escapeHtml(behavior.source)}</span>
-            <span class="meta__date">${behavior.lastUpdated}</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  `).join('');
-  
-  elements.behaviorsContainer.innerHTML = html;
-  console.log(`행동 해석 ${behaviors.length}개 렌더링 완료`);
-}
-
-export function renderSupplements() {
-  if (!state.data || !state.data.supplements) {
-    console.error('영양제 데이터가 없습니다');
-    return;
-  }
-  
-  const supplements = state.data.supplements;
-  
-  const html = supplements.map((supplement, index) => `
-    <article class="card card--success">
-      <h3 class="card__title">${escapeHtml(supplement.name)}</h3>
-      <div class="card__content">
-        <p>${escapeHtml(supplement.benefit)}</p>
-        <button class="supplement-detail-btn" onclick="showSupplementDetail(${index})" 
-                style="color: var(--color-accent); background: none; border: none; text-decoration: none; font-weight: 600; margin-top: 0.5rem; display: inline-block; cursor: pointer;">
-          자세히 보기 →
-        </button>
-        <div class="meta">
-          <span class="meta__source">출처: ${escapeHtml(supplement.source)}</span>
-          <span class="meta__date">${supplement.lastUpdated}</span>
-        </div>
-      </div>
-    </article>
-  `).join('');
-  
-  elements.supplementsContainer.innerHTML = html;
-  console.log(`영양제 추천 ${supplements.length}개 렌더링 완료`);
-}
-
-/**
- * 아코디언 토글 (다중 선택 지원)
- * @param {number} index - 아코디언 인덱스
- */
-export function toggleAccordion(index) {
-  const header = document.querySelector(`[data-index="${index}"]`);
-  const content = document.getElementById(`accordion-${index}`);
-  const icon = header.querySelector('.accordion__icon');
-  
-  if (!header || !content || !icon) {
-    console.error('아코디언 요소를 찾을 수 없습니다:', index);
-    return;
-  }
-  
-  const isOpen = header.getAttribute('aria-expanded') === 'true';
-  const isMulti = header.getAttribute('data-multi') === 'true';
-  
-  // 다중 선택이 아닌 경우 모든 아코디언 닫기 (기존 동작)
-  if (!isMulti) {
-    document.querySelectorAll('.accordion__header').forEach(h => {
-      h.setAttribute('aria-expanded', 'false');
-      const headerIcon = h.querySelector('.accordion__icon');
-      if (headerIcon) {
-        headerIcon.classList.remove('accordion__icon--open');
-      }
-    });
-    
-    document.querySelectorAll('.accordion__content').forEach(c => {
-      c.classList.remove('accordion__content--open');
-    });
-  }
-  
-  // 선택된 아코디언 토글
-  if (!isOpen) {
-    header.setAttribute('aria-expanded', 'true');
-    content.classList.add('accordion__content--open');
-    icon.classList.add('accordion__icon--open');
-  } else if (isMulti) {
-    header.setAttribute('aria-expanded', 'false');
-    content.classList.remove('accordion__content--open');
-    icon.classList.remove('accordion__icon--open');
-  }
-  
-  console.log(`아코디언 ${index} ${!isOpen ? '열기' : '닫기'}`);
-}
-
-export function showSupplementDetail(index) {
-  if (!state.data || !state.data.supplements || !state.data.supplements[index]) {
-    console.error('영양제 데이터를 찾을 수 없습니다:', index);
-    return;
-  }
-  
-  const supplement = state.data.supplements[index];
-  
-  // 기존 모달이 있다면 제거
+  // 기존 모달 제거
   const existingModal = document.getElementById('supplement-modal');
   if (existingModal) {
     existingModal.remove();
   }
-  
-  // 모달 HTML 생성
-  const modalHtml = `
-    <div class="modal" id="supplement-modal">
-      <div class="modal__content">
-        <div class="modal__header">
-          <h3>${escapeHtml(supplement.name)} 상세 정보</h3>
-          <button class="modal__close" onclick="closeSupplementModal()" aria-label="모달 닫기">&times;</button>
-        </div>
-        <div class="modal__body">
-          <div class="supplement-detail">
-            <div class="supplement-section">
-              <h4>📋 주요 효과</h4>
-              <ul>
-                ${supplement.effects.map(effect => `<li>${escapeHtml(effect)}</li>`).join('')}
-              </ul>
+
+  // 새 모달 생성
+  const modal = document.createElement('div');
+  modal.id = 'supplement-modal';
+  modal.className = 'modal modal--open';
+  modal.innerHTML = `
+    <div class="modal__content supplement-modal-content">
+      <div class="modal__header">
+        <h3>${supplement.name}</h3>
+        <button class="modal__close" onclick="closeSupplementModal()" aria-label="모달 닫기">&times;</button>
+      </div>
+      <div class="modal__body">
+        <div class="supplement-detail-layout">
+          <div class="supplement-detail-image">
+            <img src="${supplement.image}" alt="${supplement.name}">
+            <div class="supplement-detail-rating">
+              <div class="stars">${'★'.repeat(Math.floor(supplement.rating))}${'☆'.repeat(5-Math.floor(supplement.rating))}</div>
+              <div class="rating-info">
+                <span class="rating-score">${supplement.rating}/5</span>
+                <span class="review-count">(${supplement.reviews.toLocaleString()}개 리뷰)</span>
+              </div>
+            </div>
+          </div>
+          <div class="supplement-detail-info">
+            <div class="info-section">
+              <h4>📋 기본 정보</h4>
+              <div class="info-grid">
+                <div class="info-item">
+                  <span class="info-label">카테고리:</span>
+                  <span class="info-value">${supplement.category}</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">적정 연령:</span>
+                  <span class="info-value">${supplement.ageGroup}</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">가격대:</span>
+                  <span class="info-value">${supplement.price}</span>
+                </div>
+              </div>
             </div>
             
-            <div class="supplement-section">
-              <h4>⚠️ 주의사항</h4>
-              <ul>
-                ${supplement.precautions.map(precaution => `<li>${escapeHtml(precaution)}</li>`).join('')}
-              </ul>
-            </div>
-            
-            <div class="supplement-section">
+            <div class="info-section">
               <h4>💊 복용 방법</h4>
-              <p>${escapeHtml(supplement.dosage)}</p>
+              <p class="dosage-info">${supplement.dosage}</p>
+            </div>
+            
+            <div class="info-section">
+              <h4>✨ 주요 효능</h4>
+              <div class="benefits-list">
+                ${supplement.benefits.map(benefit => `<span class="benefit-tag">${benefit}</span>`).join('')}
+              </div>
+            </div>
+            
+            <div class="info-section">
+              <h4>🧪 주요 성분</h4>
+              <div class="ingredients-list">
+                ${supplement.ingredients.map(ingredient => `<span class="ingredient-tag">${ingredient}</span>`).join('')}
+              </div>
+            </div>
+            
+            <div class="info-section warning-section">
+              <h4>⚠️ 주의사항</h4>
+              <ul class="precautions-list">
+                ${supplement.precautions.map(precaution => `<li>${precaution}</li>`).join('')}
+              </ul>
             </div>
           </div>
         </div>
       </div>
     </div>
   `;
-  
-  // 모달을 body에 추가
-  document.body.insertAdjacentHTML('beforeend', modalHtml);
-  
-  // 모달 표시
-  const modal = document.getElementById('supplement-modal');
-  if (modal) {
-    modal.classList.add('modal--open');
-    document.body.style.overflow = 'hidden';
-    
-    // 모달 외부 클릭 시 닫기
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) {
-        closeSupplementModal();
-      }
-    });
-    
-    // ESC 키로 모달 닫기
-    const escapeHandler = (e) => {
-      if (e.key === 'Escape') {
-        closeSupplementModal();
-        document.removeEventListener('keydown', escapeHandler);
-      }
-    };
-    document.addEventListener('keydown', escapeHandler);
-  }
-  
-  console.log(`영양제 상세 정보 모달 열기: ${supplement.name}`);
+
+  document.body.appendChild(modal);
+
+  // 모달 외부 클릭 시 닫기
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      closeSupplementModal();
+    }
+  });
 }
 
+/**
+ * 영양제 상세 모달 닫기
+ */
 export function closeSupplementModal() {
   const modal = document.getElementById('supplement-modal');
   if (modal) {
-    modal.classList.remove('modal--open');
-    document.body.style.overflow = '';
-    
-    // 애니메이션 후 모달 제거
-    setTimeout(() => {
-      modal.remove();
-    }, 300);
+    modal.remove();
   }
-  
-  console.log('영양제 상세 정보 모달 닫기');
+}
+
+/**
+ * 아코디언 토글
+ * @param {HTMLElement} element - 클릭된 아코디언 헤더
+ */
+export function toggleAccordion(element) {
+  const content = element.nextElementSibling;
+  if (content.style.maxHeight) {
+    content.style.maxHeight = null;
+    element.querySelector('span').textContent = '+';
+  } else {
+    content.style.maxHeight = content.scrollHeight + 'px';
+    element.querySelector('span').textContent = '-';
+  }
 }

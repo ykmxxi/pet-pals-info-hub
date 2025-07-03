@@ -1,169 +1,251 @@
-export const dogData = {
-  forbiddenFoods: [
-    { 
-      name: "초콜릿", 
-      category: "과자류",
-      reason: "테오브로민 중독 위험. 심장과 신경계에 악영향을 미칠 수 있습니다.",
-      riskLevel: "critical",
-      firstAid: "즉시 동물병원 방문. 토하게 하지 마세요.",
-      source: "한국수의사회",
-      lastUpdated: "2024-12-15"
-    },
-    { 
-      name: "양파", 
-      category: "채소류",
-      reason: "적혈구 파괴를 유발하여 빈혈을 일으킬 수 있습니다.",
-      riskLevel: "critical",
-      firstAid: "즉시 토하게 하고 응급실 이송하세요. 물을 많이 먹이지 마세요.",
-      source: "한국수의사회",
-      lastUpdated: "2024-12-14"
-    },
-    { 
-      name: "포도", 
-      category: "과일류",
-      reason: "신장 손상을 일으킬 수 있으며, 급성 신부전의 위험이 있습니다.",
-      riskLevel: "high",
-      firstAid: "토하게 하고 수분 섭취 모니터링 후 병원 내원하세요.",
-      source: "수의신장학회",
-      lastUpdated: "2024-12-13"
-    },
-    { 
-      name: "마카다미아 견과류", 
-      category: "견과류",
-      reason: "근육 약화, 구토, 발열 등의 증상을 유발할 수 있습니다.",
-      riskLevel: "medium",
-      firstAid: "섭취 즉시 동물병원 방문.",
-      source: "반려동물영양학회",
-      lastUpdated: "2024-12-12"
-    },
-    { 
-      name: "아보카도", 
-      category: "과일류",
-      reason: "퍼신이라는 독성 물질이 소화기 장애를 일으킬 수 있습니다.",
-      riskLevel: "medium",
-      firstAid: "소량 섭취 시 관찰, 이상 증상 시 병원 방문.",
-      source: "반려동물영양학회",
-      lastUpdated: "2024-12-11"
-    }
-  ],
-  
-  behaviors: [
-    {
-      keyword: "꼬리 흔들기",
-      meaning: "기쁨, 흥분, 또는 관심을 표현하는 행동입니다. 꼬리의 높이와 속도에 따라 감정이 달라집니다.",
-      examples: "주인을 보거나, 산책 준비를 할 때, 좋아하는 사람이나 개를 만날 때",
-      action: "긍정적인 신호이므로 함께 놀아주거나 관심을 보여주세요.",
-      image: "assets/behaviors/dog-tail-wagging.jpg",
-      source: "한국수의행동학회",
-      lastUpdated: "2024-12-15"
-    },
-    {
-      keyword: "꼬리 다리 사이로 숨기기",
-      meaning: "불안, 두려움, 스트레스, 또는 복종을 나타내는 신호입니다.",
-      examples: "큰 소리나 낯선 환경, 다른 개에게 위협을 느낄 때",
-      action: "스트레스 요인을 제거하고 안전한 공간을 제공해주세요.",
-      image: "assets/behaviors/dog-tail-between-legs.jpg",
-      source: "반려동물행동연구소",
-      lastUpdated: "2024-12-14"
-    },
-    {
-      keyword: "바닥 긁기",
-      meaning: "본능적인 영역 표시 행동이거나 스트레스 해소 방법입니다.",
-      examples: "배변 후, 흥미로운 냄새를 맡은 후, 스트레스를 받을 때",
-      action: "자연스러운 행동이므로 제지하지 말고, 적절한 장소에서 할 수 있도록 유도하세요.",
-      image: "assets/behaviors/dog-scratching-ground.jpg",
-      source: "개행동학연구센터",
-      lastUpdated: "2024-12-13"
-    },
-    {
-      keyword: "계속 핥기",
-      meaning: "스트레스, 지루함, 알레르기, 또는 상처 부위의 불편함을 나타낼 수 있습니다.",
-      examples: "발가락, 다리, 특정 부위를 지속적으로 핥을 때",
-      action: "원인을 파악하여 스트레스 요인 제거나 수의사 상담을 받으세요.",
-      image: "assets/behaviors/dog-licking.jpg",
-      source: "수의피부과학회",
-      lastUpdated: "2024-12-12"
-    },
-    {
-      keyword: "원을 그리며 돌기",
-      meaning: "흥분, 기쁨, 또는 강박적 행동을 나타낼 수 있습니다.",
-      examples: "산책 전, 식사 시간, 또는 반복적으로 같은 자리에서 돌 때",
-      action: "일시적이면 정상이지만, 지속적이면 수의사 상담이 필요합니다.",
-      image: "assets/behaviors/dog-spinning.jpg",
-      source: "동물강박행동연구소",
-      lastUpdated: "2024-12-11"
-    },
-    {
-      keyword: "하품하기",
-      meaning: "피로감이 아닌 스트레스나 불안감을 달래는 신호일 수 있습니다.",
-      examples: "긴장된 상황이나 새로운 환경에서",
-      action: "스트레스 상황을 파악하고 편안한 환경을 조성해주세요.",
-      image: "assets/behaviors/dog-yawning.jpg",
-      source: "개스트레스연구소",
-      lastUpdated: "2024-12-10"
-    },
-    {
-      keyword: "코로 밀기",
-      meaning: "관심끌기, 애정 표현, 또는 요구사항을 전달하는 의사소통 방법입니다.",
-      examples: "관심을 받고 싶거나, 놀아달라고 할 때",
-      action: "적절한 관심을 보여주되, 과도한 요구는 무시하여 균형을 맞추세요.",
-      image: "assets/behaviors/dog-nose-nudging.jpg",
-      source: "개의사소통연구회",
-      lastUpdated: "2024-12-09"
-    },
-    {
-      keyword: "귀 뒤로 젖히기",
-      meaning: "복종, 불안, 또는 친화적 신호를 나타냅니다.",
-      examples: "주인에게 혼날 때, 다른 개와 만날 때",
-      action: "상황에 따라 안심시키거나 긍정적 강화를 해주세요.",
-      image: "assets/behaviors/dog-ears-back.jpg",
-      source: "개바디랭귀지연구소",
-      lastUpdated: "2024-12-08"
-    },
-    {
-      keyword: "입 벌리고 헥헥거리기",
-      meaning: "체온 조절이나 스트레스, 흥분 상태를 나타냅니다.",
-      examples: "운동 후, 더운 날씨, 긴장된 상황에서",
-      action: "시원한 곳에서 휴식을 취하게 하고, 충분한 물을 제공하세요.",
-      image: "assets/behaviors/dog-panting.jpg",
-      source: "개체온조절연구소",
-      lastUpdated: "2024-12-07"
-    },
-    {
-      keyword: "앞발로 긁기",
-      meaning: "관심끌기, 놀이 요청, 또는 욕구 표현의 신호입니다.",
-      examples: "주인의 다리를 긁거나, 놀이를 요청할 때",
-      action: "적절한 시간에 놀이나 산책으로 욕구를 충족시켜주세요.",
-      image: "assets/behaviors/dog-pawing.jpg",
-      source: "개놀이행동연구센터",
-      lastUpdated: "2024-12-06"
-    }
-  ],
-  
-  supplements: [
-    {
-      "name": "오메가-3",
-      "benefit": "피부·모질 개선",
-      "effects": ["피부 염증 완화", "털 윤기 증진", "관절 건강 개선", "심혈관 건강 지원"],
-      "precautions": ["과다 복용 시 설사 가능", "혈액 응고에 영향을 줄 수 있음", "수술 전 복용 중단 필요"],
-      "dosage": "체중 1kg당 20-50mg, 하루 1-2회 식사와 함께 급여",
-      "link": "#"
-    },
-    {
-      "name": "프로바이오틱스",
-      "benefit": "소화기 건강 개선",
-      "effects": ["장내 유익균 증식", "소화 능력 향상", "면역력 강화", "설사 및 변비 개선"],
-      "precautions": ["냉장 보관 필수", "항생제와 동시 복용 시 효과 감소", "급성 질환 시 수의사 상담"],
-      "dosage": "소형견: 1억 CFU, 중대형견: 5-10억 CFU, 하루 1회 식사 후 급여",
-      "link": "#"
-    },
-    {
-      "name": "글루코사민",
-      "benefit": "관절 건강 지원",
-      "effects": ["연골 재생 도움", "관절염 완화", "관절 윤활액 생성", "운동 능력 개선"],
-      "precautions": ["당뇨병 견에게 주의", "임신 및 수유 중 사용 금지", "알레르기 반응 주의"],
-      "dosage": "체중 1kg당 20mg, 하루 1-2회 식사와 함께 급여, 4-6주 지속 복용",
-      "link": "#"
-    }
-  ]
-};
+// 강아지 금지 음식 데이터
+export const forbiddenFoods = [
+  {
+    name: "초콜릿",
+    risk: "high",
+    reason: "테오브로민 중독을 일으켜 구토, 설사, 심장 문제, 발작을 유발할 수 있습니다."
+  },
+  {
+    name: "양파",
+    risk: "medium",
+    reason: "적혈구를 손상시켜 빈혈을 유발할 수 있습니다."
+  },
+  {
+    name: "마늘",
+    risk: "medium",
+    reason: "양파와 유사하게 적혈구를 손상시켜 빈혈을 유발할 수 있습니다."
+  },
+  {
+    name: "포도",
+    risk: "high",
+    reason: "신부전을 일으킬 수 있는 독성 물질이 포함되어 있습니다."
+  },
+  {
+    name: "건포도",
+    risk: "high",
+    reason: "포도와 동일하게 신부전을 일으킬 수 있습니다."
+  },
+  {
+    name: "자일리톨",
+    risk: "high",
+    reason: "급격한 혈당 강하와 간부전을 유발할 수 있습니다."
+  },
+  {
+    name: "아보카도",
+    risk: "low",
+    reason: "페르신이라는 성분이 구토와 설사를 유발할 수 있습니다."
+  },
+  {
+    name: "알코올",
+    risk: "high",
+    reason: "중추신경계 억제, 호흡 곤란, 혼수상태를 유발할 수 있습니다."
+  },
+  {
+    name: "카페인",
+    risk: "medium",
+    reason: "심박수 증가, 불안, 흥분, 발작을 유발할 수 있습니다."
+  },
+  {
+    name: "뼈",
+    risk: "low",
+    reason: "소화기계 손상, 질식, 변비 등을 유발할 수 있습니다."
+  },
+  {
+    name: "견과류 (마카다미아)",
+    risk: "medium",
+    reason: "근육 떨림, 구토, 고열을 유발할 수 있습니다."
+  },
+  {
+    name: "우유 및 유제품",
+    risk: "low",
+    reason: "유당불내증이 있는 경우 소화 불량, 설사를 유발할 수 있습니다."
+  },
+  {
+    name: "빵 반죽",
+    risk: "medium",
+    reason: "위장에서 팽창하여 통증을 유발하고, 알코올이 생성되어 중독을 일으킬 수 있습니다."
+  },
+  {
+    name: "복숭아",
+    risk: "low",
+    reason: "씨앗에 시안화물이 함유되어 중독을 일으킬 수 있습니다."
+  },
+  {
+    name: "체리",
+    risk: "low",
+    reason: "씨앗에 시안화물이 함유되어 중독을 일으킬 수 있습니다."
+  },
+  {
+    name: "감",
+    risk: "low",
+    reason: "씨앗이 장폐색을 일으킬 수 있습니다."
+  },
+  {
+    name: "버섯",
+    risk: "medium",
+    reason: "독성 버섯은 간부전, 신부전, 신경계 문제를 일으킬 수 있습니다."
+  },
+  {
+    name: "토마토 잎과 줄기",
+    risk: "low",
+    reason: "솔라닌이라는 성분이 소화기 문제를 일으킬 수 있습니다."
+  },
+  {
+    name: "감자 싹과 껍질",
+    risk: "low",
+    reason: "솔라닌이라는 성분이 소화기 문제를 일으킬 수 있습니다."
+  },
+  {
+    name: "날생선",
+    risk: "low",
+    reason: "기생충 감염의 위험이 있습니다."
+  }
+];
+
+// 강아지 행동 데이터
+export const dogBehaviors = [
+  {
+    title: "꼬리 흔들기",
+    description: "강아지가 꼬리를 흔드는 것은 일반적으로 행복하거나 흥분했다는 신호입니다. 하지만 때로는 불안하거나 경계하는 상황에서도 꼬리를 흔들 수 있습니다. 꼬리의 위치와 흔드는 속도를 함께 살펴봐야 합니다.",
+    category: "Communication"
+  },
+  {
+    title: "짖기",
+    description: "강아지가 짖는 이유는 다양합니다. 경고, 불안, 심심함, 주의 끌기 등 여러 가지 이유로 짖을 수 있습니다. 짖는 상황과 강아지의 다른 행동을 함께 고려하여 이유를 파악해야 합니다.",
+    category: "Communication"
+  },
+  {
+    title: "낑낑거림",
+    description: "강아지가 낑낑거리는 것은 보통 무언가를 원하거나 불편함을 느낄 때 나타내는 행동입니다. 배고픔, 갈증, 통증, 불안 등 다양한 이유로 낑낑거릴 수 있습니다.",
+    category: "Emotional Expression"
+  },
+  {
+    title: "하품",
+    description: "강아지가 하품을 하는 것은 피곤하거나 지루하다는 신호일 수 있지만, 스트레스를 받거나 불안할 때도 하품을 할 수 있습니다. 특히 낯선 환경이나 상황에서 하품을 한다면 스트레스의 신호일 가능성이 높습니다.",
+    category: "Emotional Expression"
+  },
+  {
+    title: "핥기",
+    description: "강아지가 핥는 행동은 애정을 표현하거나 관심을 끌기 위한 것일 수 있습니다. 또한, 불안하거나 스트레스를 받을 때 자신을 진정시키기 위해 핥을 수도 있습니다. 과도한 핥기는 피부 문제나 알레르기, 강박 행동의 신호일 수 있습니다.",
+    category: "Social Interaction"
+  },
+  {
+    title: "엎드리기",
+    description: "강아지가 엎드리는 것은 복종, 편안함, 또는 두려움을 나타내는 신호일 수 있습니다. 상황에 따라 강아지의 감정을 파악해야 합니다. 예를 들어, 주인이 화를 내고 있을 때 엎드린다면 복종의 의미일 수 있습니다.",
+    category: "Body Language"
+  },
+  {
+    title: "몸 떨기",
+    description: "강아지가 몸을 떠는 것은 추위를 느끼거나 두려움, 불안을 느낄 때 나타나는 행동입니다. 또한, 통증이나 질병의 신호일 수도 있습니다. 몸 떨림이 계속된다면 수의사에게 상담을 받는 것이 좋습니다.",
+    category: "Physical Condition"
+  },
+  {
+    title: "숨기",
+    description: "강아지가 숨는 것은 두려움, 불안, 또는 불편함을 느낄 때 나타나는 행동입니다. 천둥, 불꽃놀이, 낯선 사람 등 강아지를 불안하게 만드는 요인을 피하기 위해 숨을 수 있습니다.",
+    category: "Emotional Expression"
+  },
+  {
+    title: "배변 실수",
+    description: "강아지가 훈련된 장소가 아닌 다른 곳에서 배변을 하는 것은 여러 가지 이유가 있을 수 있습니다. 스트레스, 불안, 질병, 또는 훈련 부족 등이 원인일 수 있습니다. 수의사와 상담하여 정확한 원인을 파악하고 해결해야 합니다.",
+    category: "Health & Training"
+  },
+  {
+    title: "물건 씹기",
+    description: "강아지가 물건을 씹는 것은 자연스러운 행동이지만, 과도하게 씹는다면 심심함, 스트레스, 또는 분리 불안의 신호일 수 있습니다. 적절한 장난감을 제공하고 충분한 운동을 시켜주는 것이 좋습니다.",
+    category: "Behavioral Issues"
+  }
+];
+
+// 영양제 추천 데이터 (확장)
+export const dogSupplements = [
+  {
+    id: 1,
+    name: "멀티비타민",
+    category: "종합영양",
+    ageGroup: "전 연령",
+    description: "강아지에게 필요한 필수 비타민과 미네랄을 균형있게 제공합니다.",
+    benefits: ["면역력 강화", "건강한 성장", "활력 증진"],
+    ingredients: ["비타민A", "비타민D", "비타민E", "아연", "철분"],
+    dosage: "체중 10kg당 1정, 하루 1회",
+    precautions: ["과다 복용 금지", "수의사와 상담 후 복용"],
+    price: "25,000원 ~ 35,000원",
+    rating: 4.5,
+    reviews: 1250,
+    image: "https://images.unsplash.com/photo-1584464491033-06628f3a6b7b?w=300"
+  },
+  {
+    id: 2,
+    name: "관절건강 글루코사민",
+    category: "관절건강",
+    ageGroup: "7세 이상",
+    description: "나이든 강아지의 관절 건강을 위한 글루코사민과 콘드로이틴 복합체입니다.",
+    benefits: ["관절 유연성 증진", "연골 보호", "통증 완화"],
+    ingredients: ["글루코사민", "콘드로이틴", "MSM", "오메가-3"],
+    dosage: "체중 5kg당 1정, 하루 2회",
+    precautions: ["간 질환 시 주의", "장기 복용 시 정기 검진 필요"],
+    price: "45,000원 ~ 60,000원",
+    rating: 4.7,
+    reviews: 890,
+    image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=300"
+  },
+  {
+    id: 3,
+    name: "프로바이오틱스",
+    category: "소화건강",
+    ageGroup: "전 연령",
+    description: "장내 유익균을 증가시켜 소화기능을 개선하고 면역력을 높입니다.",
+    benefits: ["소화 개선", "면역력 강화", "변냄새 감소"],
+    ingredients: ["락토바실러스", "비피도박테리움", "프리바이오틱스"],
+    dosage: "하루 1-2정, 식후 복용",
+    precautions: ["항생제 복용 시 간격 조절", "냉장 보관"],
+    price: "30,000원 ~ 40,000원",
+    rating: 4.3,
+    reviews: 675,
+    image: "https://images.unsplash.com/photo-1585435557343-3b092031ad70?w=300"
+  },
+  {
+    id: 4,
+    name: "피부 & 모질 개선",
+    category: "피부건강",
+    ageGroup: "전 연령",
+    description: "오메가-3와 비오틴이 풍부하여 건강한 피부와 윤기나는 털을 만들어줍니다.",
+    benefits: ["털빠짐 감소", "피부 건강", "모질 개선"],
+    ingredients: ["오메가-3", "오메가-6", "비오틴", "아연"],
+    dosage: "체중 10kg당 1캡슐, 하루 1회",
+    precautions: ["피부 알레르기 병력 확인", "점진적 복용 시작"],
+    price: "35,000원 ~ 50,000원",
+    rating: 4.4,
+    reviews: 520,
+    image: "https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=300"
+  },
+  {
+    id: 5,
+    name: "심장 건강 코엔자임Q10",
+    category: "심장건강",
+    ageGroup: "5세 이상",
+    description: "심장 근육을 강화하고 심혈관 건강을 지원하는 코엔자임Q10입니다.",
+    benefits: ["심장 기능 개선", "혈액순환 촉진", "항산화 효과"],
+    ingredients: ["코엔자임Q10", "L-카르니틴", "타우린"],
+    dosage: "체중 10kg당 1캡슐, 하루 1회",
+    precautions: ["심장질환 진단 후 복용", "혈압약 복용 시 상담"],
+    price: "50,000원 ~ 70,000원",
+    rating: 4.6,
+    reviews: 320,
+    image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=300"
+  },
+  {
+    id: 6,
+    name: "눈 건강 루테인",
+    category: "눈건강",
+    ageGroup: "전 연령",
+    description: "루테인과 제아잔틴이 눈 건강을 보호하고 시력을 유지합니다.",
+    benefits: ["시력 보호", "백내장 예방", "눈 피로 완화"],
+    ingredients: ["루테인", "제아잔틴", "비타민A", "블루베리 추출물"],
+    dosage: "하루 1정, 식후 복용",
+    precautions: ["당뇨 있는 경우 주의", "정기적 안과 검진"],
+    price: "28,000원 ~ 38,000원",
+    rating: 4.2,
+    reviews: 410,
+    image: "https://images.unsplash.com/photo-1518717758536-85ae29035b6d?w=300"
+  }
+];
